@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/Header.css';
-import bkbImage from '../imagenes/bkb.png';
-import futbolImage from '../imagenes/futbol.png';
-import padelImage from '../imagenes/padel.png';
+import { assets } from '../assets/assets';
+import { useNavigate } from 'react-router-dom';
 
 const Header = () => {
-  const images = [bkbImage, futbolImage, padelImage];
+  const images = [assets.bkb, assets.futbol, assets.padel];
   const [currentIndex, setCurrentIndex] = useState(0);
+  const navigate = useNavigate()
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -27,18 +27,6 @@ const Header = () => {
 
   return (
     <header className="header">
-      <nav className="navbar">
-        <div className="logo">SPORT SPOT</div>
-        <ul className="nav-links">
-          <li><a href="/">Inicio</a></li>
-          <li><a href="/">sedes</a></li>
-          <li><a href="/">Nosotros</a></li>
-          <li><a href="/">FAQ</a></li>
-          <li><a href="/">Contactanos</a></li>
-          <li><a href="/register" className="register-btn">Regístrate</a></li>
-          <li><a href="/login" className="login-btn">Ingresa</a></li>
-        </ul>
-      </nav>
       <div className="slider">
         <button className="arrow left-arrow" onClick={handlePrevious}>
           &#9664;
@@ -50,7 +38,7 @@ const Header = () => {
         <div className="slide-text">
           <h1>CONQUISTA TU POTENCIAL</h1>
           <p>Descubre todas las opciones que tenemos disponibles para ti dentro de nuestras sedes deportivas.</p>
-          <button className="reserve-btn">RESERVA</button>
+          <button className="reserve-btn" onClick={()=>{navigate('/reserva')}}>RESERVA</button>
         </div>
       </div>
     </header>
