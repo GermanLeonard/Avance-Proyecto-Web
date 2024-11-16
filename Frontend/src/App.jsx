@@ -21,7 +21,7 @@ function App() {
         <Route path='/mis-reservas' element={<MisReservas />}></Route>
         <Route path='/reserva' element={<Reserva />}></Route>
         <Route path='/reserva/:sucursal' element={<Reserva />}></Route>
-        <Route path='/reserva/:cancha' element={<Reserva />}></Route>
+        <Route path='/reserva/:canchaId' element={<Reserva />}></Route>
       </Routes>
     </div>
   );

@@ -17,7 +17,7 @@ const Navbar = () => {
             <a href='/'>
                 <li>Inicio</li>
             </a>
-            <a href='#sedes'>
+            <a href='/#sedes'>
                 <li>Sedes</li>
             </a>
             <a href=''>

@@ -7,6 +7,9 @@ import dropdownIcon from './imagenes/down-chevron.png'
 import AntiguoCuscatlan from './imagenes/AntiguoCuscatlan.png'
 import LosProceres from './imagenes/LosProceres.png'
 import ElPlatillo from './imagenes/ElPlatillo.png'
+import CanchaFutbolEjemplo from './imagenes/canchaFutbolEjemplo.jpg'
+import CanchaBasketEjemplo from './imagenes/CanchaBasketEjemplo.jpg'
+import CanchaPadelEjemplo from './imagenes/CanchaPadelEjemplo.jpg'
 
 export const assets = {
     bkb,
@@ -41,13 +44,79 @@ export const sucursal = [
 export const canchas = [
     {
         id: 'cancha1',
-        name: 'futbol C1',
-        image: '',
-        lugar: sucursal[1].lugar,
-        lugar_id: 1,
+        name: 'futbol A1',
+        image: CanchaFutbolEjemplo,
+        lugar: sucursal[0].lugar,
+        lugar_id: sucursal[0].id,
         deporte: 'futbol',
         descripcion: 'cancha de futbol 11',
         capacidad: '30',
         precioHora: 20
+    },
+    {
+        id: 'cancha2',
+        name: 'futbol A2',
+        image: CanchaFutbolEjemplo,
+        lugar: sucursal[0].lugar,
+        lugar_id: sucursal[0].id,
+        deporte: 'futbol',
+        descripcion: 'cancha de futbol sala',
+        capacidad: '15',
+        precioHora: 10
+    },
+    {
+        id: 'cancha3',
+        name: 'futbol B1',
+        image: CanchaFutbolEjemplo,
+        lugar: sucursal[1].lugar,
+        lugar_id: sucursal[1].id,
+        deporte: 'futbol',
+        descripcion: 'cancha de futbol sala',
+        capacidad: '15',
+        precioHora: 10
+    },
+    {
+        id: 'cancha4',
+        name: 'basketball B1',
+        image: CanchaBasketEjemplo,
+        lugar: sucursal[1].lugar,
+        lugar_id: sucursal[1].id,
+        deporte: 'basketball',
+        descripcion: 'cancha de basketball',
+        capacidad: '15',
+        precioHora: 8
+    },
+    {
+        id: 'cancha5',
+        name: 'basketball C1',
+        image: CanchaBasketEjemplo,
+        lugar: sucursal[2].lugar,
+        lugar_id: sucursal[2].id,
+        deporte: 'basketball',
+        descripcion: 'cancha de',
+        capacidad: '15',
+        precioHora: 8
+    },
+    {
+        id: 'cancha6',
+        name: 'padel C1',
+        image: CanchaPadelEjemplo,
+        lugar: sucursal[2].lugar,
+        lugar_id: sucursal[2].id,
+        deporte: 'padel',
+        descripcion: 'cancha de padel 2 vs 2',
+        capacidad: '6',
+        precioHora: 30
+    },
+    {
+        id: 'cancha7',
+        name: 'padel C2',
+        image: CanchaPadelEjemplo,
+        lugar: sucursal[2].lugar,
+        lugar_id: sucursal[2].id,
+        deporte: 'padel',
+        descripcion: 'cancha de padel 2 vs 2',
+        capacidad: '6',
+        precioHora: 30
     }
 ]
