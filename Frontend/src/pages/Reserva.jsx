@@ -4,6 +4,7 @@ import { AppContext } from '../context/AppContext'
 import { Navigate, NavLink, useNavigate } from 'react-router-dom'
 import { sucursal as lugar} from '../assets/assets'
 import '../styles/Reserva.css'
+import { assets } from '../assets/assets'
 
 function Reserva() {
   const navigate = useNavigate()
@@ -36,11 +37,14 @@ function Reserva() {
         <div className='canchas-card-container'>
           {
             filterCancha.map((item, index) => (
-              <div onClick={() => navigate(`/reserva/${item.id}`)} key={index} className='canchas-card'>
-                <img src={item.image} alt="" />
+              <div onClick={() => navigate(`/cancha/${item.id}`)} key={index} className='canchas-card'>
+                <img src={item.image} alt="" className='canchas-card-img'/>
                 <div>
                   <div>
-                    <p>Disponible</p>
+                    <p>
+                      Disponible
+                      <img src={assets.disponible} alt="" className="cancha-estado" />
+                    </p>
                   </div>
                   <p>{item.name}</p>
                   <p>{item.lugar}</p>

@@ -4,9 +4,11 @@ import {canchas} from '../assets/assets'
 export const AppContext = createContext()
 
 const AppContextProvider = (props) => {
+    const moneda = '$'
     const value = {
-        canchas
+        canchas, moneda
     }
+    
     return (
         <AppContext.Provider value={value}>
             {props.children}

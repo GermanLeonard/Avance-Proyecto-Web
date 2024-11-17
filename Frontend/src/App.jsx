@@ -8,6 +8,7 @@ import Home from './pages/Home';
 import MisReservas from './pages/MisReservas';
 import Reserva from './pages/Reserva'
 import Navbar from './components/Navbar';
+import Cancha from './pages/Cancha'
 
 
 function App() {
@@ -21,7 +22,7 @@ function App() {
         <Route path='/mis-reservas' element={<MisReservas />}></Route>
         <Route path='/reserva' element={<Reserva />}></Route>
         <Route path='/reserva/:sucursal' element={<Reserva />}></Route>
-        <Route path='/reserva/:canchaId' element={<Reserva />}></Route>
+        <Route path='/cancha/:canchaId' element={<Cancha />}></Route>
       </Routes>
     </div>
   );

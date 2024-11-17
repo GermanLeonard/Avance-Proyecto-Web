@@ -10,6 +10,7 @@ import ElPlatillo from './imagenes/ElPlatillo.png'
 import CanchaFutbolEjemplo from './imagenes/canchaFutbolEjemplo.jpg'
 import CanchaBasketEjemplo from './imagenes/CanchaBasketEjemplo.jpg'
 import CanchaPadelEjemplo from './imagenes/CanchaPadelEjemplo.jpg'
+import disponible from './imagenes/disponible.png'
 
 export const assets = {
     bkb,
@@ -17,7 +18,8 @@ export const assets = {
     padel,
     logo,
     userImg,
-    dropdownIcon
+    dropdownIcon,
+    disponible
 }
 
 export const sucursal = [
@@ -82,7 +84,7 @@ export const canchas = [
         lugar: sucursal[1].lugar,
         lugar_id: sucursal[1].id,
         deporte: 'basketball',
-        descripcion: 'cancha de basketball',
+        descripcion: 'cancha de basketball con espacio cerrado',
         capacidad: '15',
         precioHora: 8
     },
@@ -93,7 +95,7 @@ export const canchas = [
         lugar: sucursal[2].lugar,
         lugar_id: sucursal[2].id,
         deporte: 'basketball',
-        descripcion: 'cancha de',
+        descripcion: 'cancha de basket para jugar ente amigos al aire libre',
         capacidad: '15',
         precioHora: 8
     },

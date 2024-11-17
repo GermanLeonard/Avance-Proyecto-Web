@@ -1,0 +1,29 @@
+.cancha{
+    padding: 20px 40px;
+}
+.cancha-card{
+    display: flex;
+    gap: 40px;
+    margin-top: 30px;
+    height: 300px;
+}
+.cancha-card-image{
+    height: 100%;
+    border-radius: 25px;
+}
+.cancha-info{
+    border: 1px solid gray;
+    padding: 20px;
+    border-radius: 25px;
+}
+.cancha-info button{
+    background: none;
+    border-radius: 10px;
+}
+.cancha-info > p{
+    font-size: 24px;
+    font-weight: bold;
+}
+.active-day{
+    background-color: aquamarine;
+}

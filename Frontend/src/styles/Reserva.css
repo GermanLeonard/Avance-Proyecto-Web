@@ -35,7 +35,10 @@
     border: 2px solid #333;
     text-align: center;
 }
-.canchas-card-container img{
+.cancha-estado{
+    height: 20px;
+}
+.canchas-card-img{
     width: 150px;
     border-radius: 25px;
     margin-top: 25px;
