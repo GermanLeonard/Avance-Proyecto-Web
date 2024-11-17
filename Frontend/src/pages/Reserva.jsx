@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { AppContext } from '../context/AppContext'
 import { Navigate, NavLink, useNavigate } from 'react-router-dom'
-import { sucursal as lugar} from '../assets/assets'
+import { sucursal as lugar, deporte} from '../assets/assets'
 import '../styles/Reserva.css'
 import { assets } from '../assets/assets'
 
@@ -12,14 +12,21 @@ function Reserva() {
   const {canchas} = useContext(AppContext)
 
   const [filterCancha, setFilterCancha] = useState([])
+  const [selectedDeporte, setSelectedDeporte] = useState(null)
 
-  useEffect(() => {
+  const filtro = () => {
+    let filtrado = canchas
     if(sucursal) {
-      setFilterCancha(canchas.filter(cancha => cancha.lugar_id == sucursal))
-    } else{
-      setFilterCancha(canchas)
+      filtrado = filtrado.filter((cancha) => cancha.lugar_id == sucursal)
     }
-  },[canchas, sucursal])
+    if(selectedDeporte){
+      filtrado = filtrado.filter((cancha) => cancha.deporte == selectedDeporte)
+    }
+    setFilterCancha(filtrado)
+  }
+  useEffect(() => {
+    filtro()
+  },[canchas, sucursal, selectedDeporte])
 
   console.log(sucursal + typeof(sucursal))
   console.log(filterCancha)
@@ -31,6 +38,15 @@ function Reserva() {
           {lugar.map((item, index) => (
             <div key={index} onClick={() => sucursal == item.id ? navigate('/reserva') : navigate(`/reserva/${item.id}`)}>
               <p className={`${sucursal == item.id ? "active" : ""}`}>{item.lugar}</p>
+            </div>
+          ))}
+        </div>
+        <div className="reserva-filtro">
+          {Object.keys(deporte).map((key, index) => (
+            <div key={index} onClick={() => selectedDeporte == deporte[key] ? setSelectedDeporte(null) : setSelectedDeporte(deporte[key])}>
+              <p className={`${selectedDeporte == deporte[key] ? 'active' : ''}`}>
+                {deporte[key]}
+              </p>
             </div>
           ))}
         </div>

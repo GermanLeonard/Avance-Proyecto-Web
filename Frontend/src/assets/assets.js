@@ -19,7 +19,14 @@ export const assets = {
     logo,
     userImg,
     dropdownIcon,
-    disponible
+    disponible,
+    CanchaBasketEjemplo,
+}
+
+export const deporte = {
+    futbolDeporte: 'futbol',
+    basketballDeporte: 'basketball',
+    padelDeporte: 'padel'
 }
 
 export const sucursal = [
@@ -50,7 +57,7 @@ export const canchas = [
         image: CanchaFutbolEjemplo,
         lugar: sucursal[0].lugar,
         lugar_id: sucursal[0].id,
-        deporte: 'futbol',
+        deporte: deporte.futbolDeporte,
         descripcion: 'cancha de futbol 11',
         capacidad: '30',
         precioHora: 20
@@ -61,7 +68,7 @@ export const canchas = [
         image: CanchaFutbolEjemplo,
         lugar: sucursal[0].lugar,
         lugar_id: sucursal[0].id,
-        deporte: 'futbol',
+        deporte: deporte.futbolDeporte,
         descripcion: 'cancha de futbol sala',
         capacidad: '15',
         precioHora: 10
@@ -72,7 +79,7 @@ export const canchas = [
         image: CanchaFutbolEjemplo,
         lugar: sucursal[1].lugar,
         lugar_id: sucursal[1].id,
-        deporte: 'futbol',
+        deporte: deporte.futbolDeporte,
         descripcion: 'cancha de futbol sala',
         capacidad: '15',
         precioHora: 10
@@ -83,7 +90,7 @@ export const canchas = [
         image: CanchaBasketEjemplo,
         lugar: sucursal[1].lugar,
         lugar_id: sucursal[1].id,
-        deporte: 'basketball',
+        deporte: deporte.basketballDeporte,
         descripcion: 'cancha de basketball con espacio cerrado',
         capacidad: '15',
         precioHora: 8
@@ -94,7 +101,7 @@ export const canchas = [
         image: CanchaBasketEjemplo,
         lugar: sucursal[2].lugar,
         lugar_id: sucursal[2].id,
-        deporte: 'basketball',
+        deporte: deporte.basketballDeporte,
         descripcion: 'cancha de basket para jugar ente amigos al aire libre',
         capacidad: '15',
         precioHora: 8
@@ -105,7 +112,7 @@ export const canchas = [
         image: CanchaPadelEjemplo,
         lugar: sucursal[2].lugar,
         lugar_id: sucursal[2].id,
-        deporte: 'padel',
+        deporte: deporte.padelDeporte,
         descripcion: 'cancha de padel 2 vs 2',
         capacidad: '6',
         precioHora: 30
@@ -116,7 +123,7 @@ export const canchas = [
         image: CanchaPadelEjemplo,
         lugar: sucursal[2].lugar,
         lugar_id: sucursal[2].id,
-        deporte: 'padel',
+        deporte: deporte.padelDeporte,
         descripcion: 'cancha de padel 2 vs 2',
         capacidad: '6',
         precioHora: 30
