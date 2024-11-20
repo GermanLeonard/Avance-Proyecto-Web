@@ -3,11 +3,12 @@ import { useContext } from 'react'
 import { AppContext } from '../context/AppContext'
 import { useParams } from 'react-router-dom'
 import '../styles/Cancha.css'
+import Relacionado from '../components/Relacionado'
 
 const Cancha = () => {
     const {canchaId} = useParams()
     const {canchas, moneda} = useContext(AppContext)
-    const diasSemana = ['Domingo', 'Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado']
+    const diasSemana = ['DOM', 'LUN', 'MAR', 'MIE', 'JUE', 'VIE', 'SAB']
 
     const [canchaInfo, setCanchaInfo] = useState(null)
     const [reservaFecha, setReservaFecha] = useState([])
@@ -22,6 +23,7 @@ const Cancha = () => {
     const horariosDisponibles = async () => {
         setReservaFecha([])
         let ahora = new Date()
+
         for(let i = 0; i < 7; i++){
             //obteniendo fecha con el indice
             let fechaActual = new Date(ahora)
@@ -30,6 +32,10 @@ const Cancha = () => {
             let horaFin = new Date()
             horaFin.setDate(ahora.getDate() + i)
             horaFin.setHours(22,0,0,0)
+            //si ya pasó la hora final del día actual, omitir ese día
+            if (i === 0 && ahora >= horaFin) {
+                continue
+            }
             //poniendo horas
             if(ahora.getDate() === fechaActual.getDate()){
                 fechaActual.setHours(fechaActual.getHours() > 8 ? fechaActual.getHours() + 1 : 8)
@@ -87,17 +93,33 @@ const Cancha = () => {
             </div>
             <div className='opciones-reserva'>
                 <p>Horarios de Reserva</p>
-                <div>
+                <div className='dia-reserva'>
                     {
                         reservaFecha.length && reservaFecha.map((item, index) => (
-                            <div className={`${fechaIndex == index ? 'active-day' : ''}`} key={index}>
+                            <div onClick={() => {
+                                setFechaIndex(index)
+                                setReservaHora('')
+                            }} className={`${fechaIndex == index ? 'active-day' : ''}`} key={index}>
                                 <p>{item[0] && diasSemana[item[0].fecha.getDay()]}</p>
                                 <p>{item[0] && item[0].fecha.getDate()}</p>
                             </div>
                         ))
                     }
                 </div>
+                <div className='hora-reserva'>
+                    {reservaFecha.length && reservaFecha[fechaIndex].map((item, index) => (
+                        <p key={index} onClick={() => setReservaHora(item.hora)} className={`${item.hora == reservaHora ? 'active-day' : ''}`}>
+                            {item.hora.toLowerCase()}
+                        </p>
+                        ))
+                    }
+                </div>
+                <button onClick={() => {
+                    setReservaHora('')
+                    setFechaIndex(0)
+                }}>Reservar Cancha</button>
             </div>
+            <Relacionado canchaId={canchaId} deporte={canchaInfo.deporte}/>
         </div>
     )
 }

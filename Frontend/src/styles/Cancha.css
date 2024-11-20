@@ -1,3 +1,8 @@
+html, body {
+    overflow-y: auto; /* Debe permitir el scroll */
+    height: 100%; /* Asegura que la página ocupe la altura completa */
+}
+
 .cancha{
     padding: 20px 40px;
 }
@@ -26,4 +31,47 @@
 }
 .active-day{
     background-color: aquamarine;
+}
+.dia-reserva{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    overflow-x: scroll;
+    gap: 50px;
+    text-align: center;
+    margin-top: 30px;
+    scrollbar-width: none;
+}
+.dia-reserva div{
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 20px;
+    border: 1px solid black;
+}
+.hora-reserva{
+    margin-top: 20px;
+    display: flex;
+    gap: 30px;
+    overflow-x: scroll;
+    scrollbar-width: none;
+}
+.hora-reserva p{
+    display: flex;
+    padding: 10px;
+    border-radius: 20px;
+    border: 1px solid gray;
+    align-items: center;
+    text-align: center;
+    cursor: pointer;
+    color: gray;
+}
+.opciones-reserva button{
+    background-color: antiquewhite;
+    padding: 15px;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+.relacionado-container{
+    margin: 0 auto;
+    max-width: 600px;
 }
