@@ -1,7 +1,14 @@
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import '../styles/Register.css';
+import { AppContext } from '../context/AppContext';
+import axios from 'axios';
+import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 
 const Register = () => {
+  const {backendUrl, token, setToken} = useContext(AppContext)
+  const navigate = useNavigate()
+
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -10,27 +17,24 @@ const Register = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch('http://localhost:3000/api/auth/register', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ username, email, password }),
-      });
-
-      const data = await response.json();
-
-      if (response.ok) {
-        console.log('Usuario registrado exitosamente:', data);
-        alert('Registro exitoso');
+      const {data} = await axios.post(backendUrl + '/api/user/register', {username, email, password})
+      if (data.success) {
+        localStorage.setItem('token', data.token)
+        setToken(data.token)
       } else {
-        alert(data.message || 'Error al registrarse');
+        toast.error(data.message)
       }
     } catch (error) {
-      console.error('Error:', error);
-      alert('Error al registrarse');
+      toast.error(error.message)
     }
   };
+
+  useEffect(() => {
+    if (token) {
+      navigate('/')
+    }
+  })
+
 
   return (
     <div className="auth-container">
@@ -45,6 +49,7 @@ const Register = () => {
               className="auth-input"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
+              required
             />
           </div>
           <div className="input-wrapper">
@@ -55,6 +60,7 @@ const Register = () => {
               className="auth-input"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              required
             />
           </div>
           <div className="input-wrapper">
@@ -65,6 +71,7 @@ const Register = () => {
               className="auth-input"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              required
             />
           </div>
           <p className="auth-text">Debe tener más de 6 caracteres</p>
