@@ -1,0 +1,73 @@
+.nosotros {
+    position: relative;
+    padding: 80px 50px;
+    text-align: center;
+    background: linear-gradient(180deg, rgba(245, 223, 209, 0.5) 0%, rgba(250, 226, 206, 0.5) 100%);
+    border-radius: 0px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+}
+
+.cuadro {
+    background-color: #FFF;
+    border-radius: 16px;
+    padding: 40px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    display: inline-block;
+    width: 85%;
+    max-width: 1100px;
+    height: auto;
+    margin: 0 auto;
+}
+
+
+
+.nosotros h3 {
+    position: relative;
+    font-family: 'Lato', sans-serif;
+    color: #F27F1A;
+    font-size: 48px;
+    font-weight: 900;
+    margin-bottom: 40px;
+    display: inline-block;
+    background: #F0F0F0;
+    padding: 10px 30px;
+    border-radius: 20px 20px 40px 40px; /* Ajusta las esquinas para una forma personalizada */
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.info-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+    align-items: stretch; /* Asegura que ambos lados estén alineados verticalmente */
+}
+
+.info-container div {
+    width: 45%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.imagen-deporte {
+    position: absolute;
+    bottom: -40px; /* Baja la imagen más para mayor visibilidad */
+    right: 10px; /* Ajusta la posición hacia la derecha */
+    width: 380px; /* Aumenta considerablemente el ancho de la imagen */
+    height: auto; /* Mantén la proporción de la imagen */
+}
+
+.info-container p {
+    font-family: 'Lato', sans-serif;
+    color: #000;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1.8;
+    text-align: justify;
+}
+
+.info-container p span {
+    color: #F27F1A;
+    font-weight: 700;
+}
+
