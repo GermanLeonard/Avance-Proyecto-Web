@@ -1,10 +1,18 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import {assets} from '../assets/assets'
 import { Navigate, NavLink, useNavigate } from 'react-router-dom'
+import { AppContext } from '../context/AppContext'
 
 const Navbar = () => {
-    const [showMenu, setShowMenu] = useState(false)
-    const [token, setToken] = useState(true)
+    const [showMenu, setShowMenu] = useState(false) //para el menu de responsive para celular
+
+    const {token, setToken} = useContext(AppContext)
+
+    const logout = () => {
+        setToken(false)
+        localStorage.removeItem('token')
+    }
+
     const navigate = useNavigate()
 
   return (
@@ -38,7 +46,7 @@ const Navbar = () => {
                     <div className='nav-dropdown-container'>
                         <div className='nav-dropdown'>
                             <p onClick={()=>navigate('mis-reservas')}>Mis Reservas</p>
-                            <p onClick={()=>setToken(false)}>Cerrar Sesión</p>
+                            <p onClick={logout}>Cerrar Sesión</p>
                         </div>
                     </div>
                 </div> 

@@ -1,8 +1,13 @@
-const express = require('express');
-const router = express.Router();
-const { register, login } = require('../controllers/authController');
+import express from 'express'
+import { registerUser, loginUser, reservarCancha } from '../controllers/authController.js';
+import authUser from '../middlewares/authUser.js';
+const userRouter = express.Router();
 
-router.post('/register', register);
-router.post('/login', login);
+// Ruta para registrarse
+userRouter.post('/register', registerUser);
+// Ruta para iniciar sesión
+userRouter.post('/login', loginUser);
+userRouter.post('/reservar-cancha', authUser, reservarCancha)
 
-module.exports = router;
+export default userRouter
+
