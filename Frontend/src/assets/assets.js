@@ -11,6 +11,7 @@ import CanchaFutbolEjemplo from './imagenes/canchaFutbolEjemplo.jpg'
 import CanchaBasketEjemplo from './imagenes/CanchaBasketEjemplo.jpg'
 import CanchaPadelEjemplo from './imagenes/CanchaPadelEjemplo.jpg'
 import disponible from './imagenes/disponible.png'
+import mongoose from 'mongoose';
 
 export const assets = {
     bkb,
@@ -34,98 +35,122 @@ export const sucursal = [
         id: 1,
         lugar: 'Antiguo Cuscatlán',
         descripcion: 'En nuestra sede de Antiguo Cuscatlán, encontrarás canchas de fútbol 6x6, básquetbol y pádel, con instalaciones diseñadas para ofrecer comodidad y calidad en cada juego. Ideales para partidos entre amigos, entrenamientos o eventos deportivos.',
-        image: AntiguoCuscatlan
+        image: AntiguoCuscatlan,
+        direccion: 'Calle El Roble, frente a Parque Central, La Libertad, El Salvador'
     },
     {
         id: 2,
         lugar: 'Los Próceres',
         descripcion: 'Ubicada en Los Próceres, nuestra sede cuenta con modernas canchas de fútbol 6x6 y canchas techadas de básquetbol, perfectas para jugar en cualquier clima. Disfruta de instalaciones cómodas, con iluminación y superficies de calidad, ideales para entrenamientos y partidos entre amigos.',
-        image: LosProceres
+        image: LosProceres,
+        direccion: 'Bulevar Los Próceres, kilómetro 10, cerca de Plaza Monumental, La Libertad, El Salvador'
     },
     {
         id: 3,
         lugar: 'El Platillo',
         descripcion: 'Disfruta el mejor fútbol en nuestra cancha 6x6 en El Platillo. Con césped sintético y excelente iluminación, es ideal para jugar con amigos o entrenar. ¡Reserva y ven a vivir la emoción del deporte!',
-        image: ElPlatillo
+        image: ElPlatillo,
+        direccion: 'Calle Principal El Platillo, contiguo a la Cancha Comunitaria, La Libertad, El Salvador'
     },
 ]
 
 export const canchas = [
     {
-        id: 'cancha1',
-        name: 'Futbol A1',
+        id: new mongoose.Types.ObjectId(),
+        name: 'futbol A1',
         image: CanchaFutbolEjemplo,
         lugar: sucursal[0].lugar,
         lugar_id: sucursal[0].id,
+        direccion: sucursal[0].direccion,
         deporte: deporte.futbolDeporte,
         descripcion: 'cancha de futbol 11',
         capacidad: '30',
-        precioHora: 20
+        precioHora: 20,
+        espacios_reservados: {},
+        disponible: true
     },
     {
-        id: 'cancha2',
-        name: 'Futbol A2',
+        id: new mongoose.Types.ObjectId(),
+        name: 'futbol A2',
         image: CanchaFutbolEjemplo,
         lugar: sucursal[0].lugar,
         lugar_id: sucursal[0].id,
+        direccion: sucursal[0].direccion,
         deporte: deporte.futbolDeporte,
         descripcion: 'cancha de futbol sala',
         capacidad: '15',
-        precioHora: 10
+        precioHora: 10,
+        espacios_reservados: {},
+        disponible: true
     },
     {
-        id: 'cancha3',
-        name: 'Futbol B1',
+        id: new mongoose.Types.ObjectId(),
+        name: 'futbol B1',
         image: CanchaFutbolEjemplo,
         lugar: sucursal[1].lugar,
         lugar_id: sucursal[1].id,
+        direccion: sucursal[1].direccion,
         deporte: deporte.futbolDeporte,
         descripcion: 'cancha de futbol sala',
         capacidad: '15',
-        precioHora: 10
+        precioHora: 10,
+        espacios_reservados: {},
+        disponible: true
     },
     {
-        id: 'cancha4',
-        name: 'Basketball B1',
+        id: new mongoose.Types.ObjectId(),
+        name: 'basketball B1',
         image: CanchaBasketEjemplo,
         lugar: sucursal[1].lugar,
         lugar_id: sucursal[1].id,
+        direccion: sucursal[1].direccion,
         deporte: deporte.basketballDeporte,
         descripcion: 'cancha de basketball con espacio cerrado',
         capacidad: '15',
-        precioHora: 8
+        precioHora: 8,
+        espacios_reservados: {},
+        disponible: true
     },
     {
-        id: 'cancha5',
-        name: 'Basketball C1',
+        id: new mongoose.Types.ObjectId(),
+        name: 'basketball C1',
         image: CanchaBasketEjemplo,
         lugar: sucursal[2].lugar,
         lugar_id: sucursal[2].id,
+        direccion: sucursal[2].direccion,
         deporte: deporte.basketballDeporte,
         descripcion: 'cancha de basket para jugar ente amigos al aire libre',
         capacidad: '15',
-        precioHora: 8
+        precioHora: 8,
+        espacios_reservados: {},
+        disponible: true
     },
     {
-        id: 'cancha6',
-        name: 'Padel C1',
+        id: new mongoose.Types.ObjectId(),
+        name: 'padel C1',
         image: CanchaPadelEjemplo,
         lugar: sucursal[2].lugar,
         lugar_id: sucursal[2].id,
+        direccion: sucursal[2].direccion,
         deporte: deporte.padelDeporte,
         descripcion: 'cancha de padel 2 vs 2',
         capacidad: '6',
-        precioHora: 30
+        precioHora: 30,
+        espacios_reservados: {},
+        disponible: true
     },
     {
-        id: 'cancha7',
-        name: 'Padel C2',
+        id: new mongoose.Types.ObjectId(),
+        name: 'padel C2',
         image: CanchaPadelEjemplo,
         lugar: sucursal[2].lugar,
         lugar_id: sucursal[2].id,
+        direccion: sucursal[2].direccion,
         deporte: deporte.padelDeporte,
         descripcion: 'cancha de padel 2 vs 2',
         capacidad: '6',
-        precioHora: 30
+        precioHora: 30,
+        espacios_reservados: {},
+        disponible: true
     }
 ]

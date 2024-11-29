@@ -1,24 +1,25 @@
-const express = require('express');
-const mongoose = require('mongoose');
-const cors = require('cors');
-const dotenv = require('dotenv');
-const authRoutes = require('./routes/authRoutes');
+import express from 'express'
+import cors from 'cors'
+import 'dotenv/config'
+import conectarDB from './config/mongodb.js'
+import adminRouter from './routes/adminRoutes.js'
+import userRouter from './routes/authRoutes.js'
 
-dotenv.config();
-const app = express();
-app.use(cors());
+const app = express()
 const PORT = process.env.PORT || 3000;
+conectarDB()
 
-// Middleware para analizar JSON
+// Middleware para analizar JSON y habilitar al frontend conectar con el backend
 app.use(express.json());
+app.use(cors())
 
-// Conexión a MongoDB
-mongoose.connect(process.env.MONGO_URI)
-  .then(() => console.log('Conectado a MongoDB'))
-  .catch((err) => console.error('Error al conectar a MongoDB:', err));
+// API endpoints
+app.use('/api/admin', adminRouter)
+app.use('/api/user', userRouter)
 
-// Usar rutas de autenticación
-app.use('/api/auth', authRoutes);
+app.get('/', (req, res) => {
+  res.send('prueba API')
+})
 
 // Inicia el servidor
 app.listen(PORT, () => {
