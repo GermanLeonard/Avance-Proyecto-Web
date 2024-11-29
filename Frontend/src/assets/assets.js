@@ -53,7 +53,7 @@ export const sucursal = [
 export const canchas = [
     {
         id: 'cancha1',
-        name: 'futbol A1',
+        name: 'Futbol A1',
         image: CanchaFutbolEjemplo,
         lugar: sucursal[0].lugar,
         lugar_id: sucursal[0].id,
@@ -64,7 +64,7 @@ export const canchas = [
     },
     {
         id: 'cancha2',
-        name: 'futbol A2',
+        name: 'Futbol A2',
         image: CanchaFutbolEjemplo,
         lugar: sucursal[0].lugar,
         lugar_id: sucursal[0].id,
@@ -75,7 +75,7 @@ export const canchas = [
     },
     {
         id: 'cancha3',
-        name: 'futbol B1',
+        name: 'Futbol B1',
         image: CanchaFutbolEjemplo,
         lugar: sucursal[1].lugar,
         lugar_id: sucursal[1].id,
@@ -86,7 +86,7 @@ export const canchas = [
     },
     {
         id: 'cancha4',
-        name: 'basketball B1',
+        name: 'Basketball B1',
         image: CanchaBasketEjemplo,
         lugar: sucursal[1].lugar,
         lugar_id: sucursal[1].id,
@@ -97,7 +97,7 @@ export const canchas = [
     },
     {
         id: 'cancha5',
-        name: 'basketball C1',
+        name: 'Basketball C1',
         image: CanchaBasketEjemplo,
         lugar: sucursal[2].lugar,
         lugar_id: sucursal[2].id,
@@ -108,7 +108,7 @@ export const canchas = [
     },
     {
         id: 'cancha6',
-        name: 'padel C1',
+        name: 'Padel C1',
         image: CanchaPadelEjemplo,
         lugar: sucursal[2].lugar,
         lugar_id: sucursal[2].id,
@@ -119,7 +119,7 @@ export const canchas = [
     },
     {
         id: 'cancha7',
-        name: 'padel C2',
+        name: 'Padel C2',
         image: CanchaPadelEjemplo,
         lugar: sucursal[2].lugar,
         lugar_id: sucursal[2].id,
