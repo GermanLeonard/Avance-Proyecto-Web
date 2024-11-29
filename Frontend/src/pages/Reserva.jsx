@@ -1,77 +1,101 @@
-import React, { useContext, useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
-import { AppContext } from '../context/AppContext'
-import { Navigate, NavLink, useNavigate } from 'react-router-dom'
-import { sucursal as lugar, deporte} from '../assets/assets'
-import '../styles/Reserva.css'
-import { assets } from '../assets/assets'
+import React, { useContext, useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { AppContext } from "../context/AppContext";
+import { Navigate, NavLink, useNavigate } from "react-router-dom";
+import { sucursal as lugar, deporte } from "../assets/assets";
+import "../styles/Reserva.css";
+import { assets } from "../assets/assets";
 
 function Reserva() {
-  const navigate = useNavigate()
-  const {sucursal} = useParams()
-  const {canchas} = useContext(AppContext)
+  const navigate = useNavigate();
+  const { sucursal } = useParams();
+  const { canchas } = useContext(AppContext);
 
-  const [filterCancha, setFilterCancha] = useState([])
-  const [selectedDeporte, setSelectedDeporte] = useState(null)
+  const [filterCancha, setFilterCancha] = useState([]);
+  const [selectedDeporte, setSelectedDeporte] = useState("");
+  const [selectedSucursal, setSelectedSucursal] = useState(sucursal || "");
 
-  const filtro = () => {
-    let filtrado = canchas
-    if(sucursal) {
-      filtrado = filtrado.filter((cancha) => cancha.lugar_id == sucursal)
-    }
-    if(selectedDeporte){
-      filtrado = filtrado.filter((cancha) => cancha.deporte == selectedDeporte)
-    }
-    setFilterCancha(filtrado)
-  }
   useEffect(() => {
-    filtro()
-  },[canchas, sucursal, selectedDeporte])
+    let filtrado = canchas;
+    if (selectedSucursal) {
+      filtrado = filtrado.filter(
+        (cancha) => cancha.lugar_id == selectedSucursal
+      );
+    }
+    if (selectedDeporte) {
+      filtrado = filtrado.filter((cancha) => cancha.deporte == selectedDeporte);
+    }
+    setFilterCancha(filtrado);
+  }, [canchas, selectedSucursal, selectedDeporte]);
 
-  console.log(sucursal + typeof(sucursal))
-  console.log(filterCancha)
   return (
-    <div className='reserva'>
-      <p>Explora a través de nuestras sucursales</p>
-      <div className='reserva-content'>
-        <div className='reserva-filtro'>
-          {lugar.map((item, index) => (
-            <div key={index} onClick={() => sucursal == item.id ? navigate('/reserva') : navigate(`/reserva/${item.id}`)}>
-              <p className={`${sucursal == item.id ? "active" : ""}`}>{item.lugar}</p>
-            </div>
-          ))}
-        </div>
+    <div className="reserva">
+      <p>Reserva de Instalaciones Deportivas</p>
+      <div className="reserva-content">
         <div className="reserva-filtro">
-          {Object.keys(deporte).map((key, index) => (
-            <div key={index} onClick={() => selectedDeporte == deporte[key] ? setSelectedDeporte(null) : setSelectedDeporte(deporte[key])}>
-              <p className={`${selectedDeporte == deporte[key] ? 'active' : ''}`}>
+          <select
+            value={selectedSucursal}
+            onChange={(e) => {
+              setSelectedSucursal(e.target.value);
+              navigate(
+                e.target.value ? `/reserva/${e.target.value}` : "/reserva"
+              );
+            }}
+          >
+            <option value="">Todas las sucursales</option>
+            {lugar.map((item) => (
+              <option key={item.id} value={item.id}>
+                {item.lugar}
+              </option>
+            ))}
+          </select>
+          <select
+            value={selectedDeporte}
+            onChange={(e) => setSelectedDeporte(e.target.value)}
+          >
+            <option value="">Todos los deportes</option>
+            {Object.keys(deporte).map((key) => (
+              <option key={key} value={deporte[key]}>
                 {deporte[key]}
-              </p>
-            </div>
-          ))}
+              </option>
+            ))}
+          </select>
         </div>
-        <div className='canchas-card-container'>
-          {
-            filterCancha.map((item, index) => (
-              <div onClick={() => navigate(`/cancha/${item.id}`)} key={index} className='canchas-card'>
-                <img src={item.image} alt="" className='canchas-card-img'/>
+        <div className="canchas-card-container">
+          {filterCancha.map((item) => (
+            <div
+              onClick={() => navigate(`/cancha/${item.id}`)}
+              key={item.id}
+              className="canchas-card"
+            >
+              <img
+                src={item.image}
+                alt={item.name}
+                className="canchas-card-img"
+              />
+              <div className="canchas-card-info">
                 <div>
-                  <div>
-                    <p>
-                      Disponible
-                      <img src={assets.disponible} alt="" className="cancha-estado" />
-                    </p>
-                  </div>
-                  <p>{item.name}</p>
+                  <p>
+                    <strong>{item.name}</strong>
+                  </p>
                   <p>{item.lugar}</p>
                 </div>
+                <div
+                  style={{ display: "flex", alignItems: "center", gap: "15px" }}
+                >
+                  <div className="cancha-estado">
+                    <img src={assets.disponible} alt="Disponible" />
+                    Disponible
+                  </div>
+                  <button>RESERVA</button>
+                </div>
               </div>
-            ))
-          }
+            </div>
+          ))}
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default Reserva
+export default Reserva;

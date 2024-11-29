@@ -5,6 +5,7 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 
+
 const Login = () => {
   const [email, setEmail] = useState(''); // Cambiado de username a email
   const [password, setPassword] = useState('');
@@ -49,6 +50,7 @@ const Login = () => {
               value={email} // Cambiado de username a email
               onChange={(e) => setEmail(e.target.value)} // Cambiado de setUsername a setEmail
               required
+
             />
           </div>
           <div className="input-wrapper">
