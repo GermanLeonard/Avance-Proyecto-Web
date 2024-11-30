@@ -45,6 +45,7 @@ const Register = () => {
               className="auth-input"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
+              required
             />
           </div>
           <div className="input-wrapper">
@@ -55,6 +56,7 @@ const Register = () => {
               className="auth-input"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              required
             />
           </div>
           <div className="input-wrapper">
@@ -65,6 +67,7 @@ const Register = () => {
               className="auth-input"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              required
             />
           </div>
           <p className="auth-text">Debe tener más de 6 caracteres</p>

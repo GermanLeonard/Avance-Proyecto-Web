@@ -46,6 +46,7 @@ const Login = () => {
               className="auth-input"
               value={email} // Cambiado de username a email
               onChange={(e) => setEmail(e.target.value)} // Cambiado de setUsername a setEmail
+              required
             />
           </div>
           <div className="input-wrapper">
@@ -56,6 +57,7 @@ const Login = () => {
               className="auth-input"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              required
             />
           </div>
           <button type="submit" className="auth-button">Iniciar Sesión</button>

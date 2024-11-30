@@ -33,7 +33,7 @@ const Cancha = () => {
             horaFin.setDate(ahora.getDate() + i)
             horaFin.setHours(22,0,0,0)
             //si ya pasó la hora final del día actual, omitir ese día
-            if (i === 0 && ahora >= horaFin) {
+            if (i === 0 && ahora.getHours() >= 21) {
                 continue
             }
             //poniendo horas

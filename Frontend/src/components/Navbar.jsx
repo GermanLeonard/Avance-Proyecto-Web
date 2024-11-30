@@ -3,7 +3,7 @@ import {assets} from '../assets/assets'
 import { Navigate, NavLink, useNavigate } from 'react-router-dom'
 
 const Navbar = () => {
-    const [showMenu, setShowMenu] = useState(false)
+    const [showMenu, setShowMenu] = useState(false) //para el menu desplegable en mobile
     const [token, setToken] = useState(true)
     const navigate = useNavigate()
 
