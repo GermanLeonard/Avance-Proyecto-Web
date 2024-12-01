@@ -53,7 +53,7 @@ function Reserva() {
         <div className='canchas-card-container'>
           {
             filterCancha.map((item, index) => (
-              <div onClick={() => navigate(`/cancha/${item.id}`)} key={index} className='canchas-card'>
+              <div onClick={() => navigate(`/cancha/${item._id}`)} key={index} className='canchas-card'>
                 <img src={item.image} alt="" className='canchas-card-img'/>
                 <div>
                   <div>

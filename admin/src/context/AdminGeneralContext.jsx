@@ -1,11 +1,42 @@
 import { createContext, useState } from "react"
 export const AdminGeneralContext = createContext()
+import axios from 'axios'
+import {toast} from 'react-toastify'
 
 const AdminGeneralContextProvider = (props) => {
     const [adminGeneralToken, setAdminGeneralToken] = useState(localStorage.getItem('adminGeneralToken')?localStorage.getItem('adminGeneralToken'):'')
+    const [canchas, setCanchas] = useState([])
     const backendUrl = import.meta.env.VITE_BACKEND_URL
+
+    const getTodasCanchas = async () => {
+        try {
+            const {data} = await axios.post(backendUrl + '/api/admin-general/todas-canchas', {}, {headers:{adminGeneralToken}})
+            if(data.success){
+                setCanchas(data.canchas)
+                console.log(data.canchas)
+            }else{
+                toast.error(data.message)
+            }
+        } catch (error) {
+            toast.error(error.message)
+        }
+    }
+
+    const cambiarDisponibilidad = async (canchaId) => {
+        try {
+            const {data} = await axios.post(backendUrl + '/api/admin-general/cambiar-disponibilidad', {canchaId}, {headers: {adminGeneralToken}})
+            if(data.success){
+                toast.success(data.message)
+                getTodasCanchas()
+            } else{
+                toast.error(data.message)
+            }
+        } catch (error) {
+            toast.error(error.message)
+        }
+    }
     const value = {
-        adminGeneralToken, setAdminGeneralToken, backendUrl
+        adminGeneralToken, setAdminGeneralToken, backendUrl, canchas, getTodasCanchas, cambiarDisponibilidad
     }
 
     return (

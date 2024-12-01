@@ -1,34 +1,28 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import '../styles/Register.css';
+import { AppContext } from '../context/AppContext';
+import axios from 'axios'
+import { toast } from 'react-toastify';
 
 const Register = () => {
+  const {backendUrl, token, setToken} = useContext(AppContext)
+
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const handleRegister = async (e) => {
     e.preventDefault();
-
     try {
-      const response = await fetch('http://localhost:3000/api/auth/register', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ username, email, password }),
-      });
-
-      const data = await response.json();
-
-      if (response.ok) {
-        console.log('Usuario registrado exitosamente:', data);
-        alert('Registro exitoso');
-      } else {
-        alert(data.message || 'Error al registrarse');
+      const {data} = await axios.post(backendUrl + '/api/user/registrar', {username, email, password})
+      if(data.success){
+        localStorage.setItem('token', data.token)
+        setToken(data.token)
+      }else{
+        toast.error(data.message)
       }
     } catch (error) {
-      console.error('Error:', error);
-      alert('Error al registrarse');
+      toast.error(error.message)
     }
   };
 
@@ -70,7 +64,7 @@ const Register = () => {
               required
             />
           </div>
-          <p className="auth-text">Debe tener más de 6 caracteres</p>
+          <p className="auth-text">Debe tener más de 8 caracteres</p>
           <button type="submit" className="auth-button">Regístrate</button>
           <a href="/login" className="auth-link">¿Ya tienes cuenta? Ingresa ahora</a>
         </form>

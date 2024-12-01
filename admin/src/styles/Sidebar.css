@@ -1,0 +1,24 @@
+body{
+    margin: 0;
+}
+.admin-page{
+    display: flex;
+}
+.sidebar{
+    width: 20%;
+    background-color: rgb(255, 253, 127);
+    height: 100vh;
+}
+ul{
+    padding: 0;
+}
+.navlink{
+    display: flex;
+    align-items: center;
+}
+.navlink-selected{
+    display: flex;
+    align-items: center;
+    background-color: blueviolet;
+    border-right: 5px solid palevioletred;
+}

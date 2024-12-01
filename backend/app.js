@@ -3,6 +3,8 @@ import cors from 'cors'
 import 'dotenv/config'
 import connectDB from './config/mongodb.js'
 import adminGeneralRouter from './routes/adminGeneralRoute.js'
+import canchaRouter from './routes/canchaRoute.js'
+import userRouter from './routes/userRoute.js'
 
 //app config
 const app = express()
@@ -15,7 +17,9 @@ app.use(cors())
 
 //api endpoints
 app.use('/api/admin-general', adminGeneralRouter)
-//localhost:3000/api/admin-general/agregar-empleado
+app.use('/api/cancha', canchaRouter)
+app.use('/api/user', userRouter)
+
 app.get('/', (req, res) => {
   res.send('API funcional')
 })

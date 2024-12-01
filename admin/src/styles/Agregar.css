@@ -1,0 +1,7 @@
+form{
+    padding: 100px 60px;
+}
+.formulario{
+    display: flex;
+    gap: 60px;
+}

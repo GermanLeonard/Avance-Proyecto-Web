@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from 'react'
 import { useContext } from 'react'
 import { AppContext } from '../context/AppContext'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import '../styles/Cancha.css'
 import Relacionado from '../components/Relacionado'
+import { toast } from 'react-toastify'
+import axios from 'axios'
 
 const Cancha = () => {
+    const navigate = useNavigate()
     const {canchaId} = useParams()
-    const {canchas, moneda} = useContext(AppContext)
+    const {canchas, moneda, backendUrl, token, getCanchasData} = useContext(AppContext)
     const diasSemana = ['DOM', 'LUN', 'MAR', 'MIE', 'JUE', 'VIE', 'SAB']
 
     const [canchaInfo, setCanchaInfo] = useState(null)
@@ -16,7 +19,7 @@ const Cancha = () => {
     const [reservaHora, setReservaHora] = useState('')
 
     const fetchCanchaInfo = async () => {
-        const canchaInfo = canchas.find(cancha => cancha.id == canchaId)
+        const canchaInfo = canchas.find(cancha => cancha._id == canchaId)
         setCanchaInfo(canchaInfo)
     }
 
@@ -57,6 +60,30 @@ const Cancha = () => {
                 fechaActual.setHours(fechaActual.getHours() + 1)
             }
             setReservaFecha(prev => ([...prev, horasDisponibles]))
+        }
+    }
+    const reservarCancha = async () => {
+        if(!token){
+            toast.warn('Inicia Sesión Para Reservar Canchas')
+            return navigate('/login')
+        } try {
+            const date = reservaFecha[fechaIndex][0].fecha
+            let dia = date.getDate()
+            let mes = date.getMonth() + 1
+            let anio = date.getFullYear()
+            const espacioFecha = dia + '_' + mes + '_' + anio
+            console.log('Datos enviados:', { canchaId, espacioFecha, reservaHora });
+            const {data} = await axios.post(backendUrl + '/api/user/reservar-cancha', {canchaId, espacioFecha, reservaHora}, {headers:{token}})
+            if(data.success){
+                toast.success(data.message)
+                getCanchasData()
+                navigate('/mis-reservas')
+            }else{
+                toast.error(data.message)
+            }
+        } catch (error) {
+            console.log(error)
+            toast.error(error.message)
         }
     }
 
@@ -114,10 +141,7 @@ const Cancha = () => {
                         ))
                     }
                 </div>
-                <button onClick={() => {
-                    setReservaHora('')
-                    setFechaIndex(0)
-                }}>Reservar Cancha</button>
+                <button onClick={() => {reservarCancha()}}>Reservar Cancha</button>
             </div>
             <Relacionado canchaId={canchaId} deporte={canchaInfo.deporte}/>
         </div>

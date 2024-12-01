@@ -1,37 +1,37 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import '../styles/Login.css';
+import { AppContext } from '../context/AppContext';
+import axios from 'axios'
+import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
+  const {backendUrl, token, setToken} = useContext(AppContext)
+  const navigate = useNavigate()
+
   const [email, setEmail] = useState(''); // Cambiado de username a email
   const [password, setPassword] = useState('');
 
   const handleLogin = async (e) => {
     e.preventDefault();
-
     try {
-      const response = await fetch('http://localhost:3000/api/auth/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email, password }), // Cambiado de username a email
-      });
-
-      const data = await response.json();
-
-      if (response.ok) {
-        console.log('Inicio de sesión exitoso:', data);
-        alert('Inicio de sesión exitoso');
-        // Guarda el token en localStorage si es necesario
-        localStorage.setItem('token', data.token);
-      } else {
-        alert(data.message || 'Error al iniciar sesión');
+      const {data} = await axios.post(backendUrl + '/api/user/login', {password, email})
+      if(data.success){
+        localStorage.setItem('token', data.token)
+        setToken(data.token)
+      } else{
+        toast.error(data.message)
       }
     } catch (error) {
-      console.error('Error:', error);
-      alert('Error al iniciar sesión');
+      toast.error(error.message)
     }
   };
+
+  useEffect(() => {
+    if(token){
+      navigate('/')
+    }
+  },[token])
 
   return (
     <div className="auth-container">
