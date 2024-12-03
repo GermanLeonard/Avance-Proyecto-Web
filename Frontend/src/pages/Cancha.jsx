@@ -115,7 +115,7 @@ const Cancha = () => {
                     <p>{canchaInfo.name}</p>
                     <div>
                         <p>{canchaInfo.lugar}</p>
-                        <button>{canchaInfo.deporte}</button>
+                        <p>{canchaInfo.deporte}</p>
                     </div>
                 
                     <div className='cancha-descripcion'>
