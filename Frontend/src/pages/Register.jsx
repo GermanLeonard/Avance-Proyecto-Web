@@ -1,12 +1,13 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import '../styles/Register.css';
 import { AppContext } from '../context/AppContext';
-import axios from 'axios'
+import axios from 'axios';
 import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 
 const Register = () => {
   const {backendUrl, token, setToken} = useContext(AppContext)
-
+  const navigate = useNavigate()
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -26,6 +27,12 @@ const Register = () => {
     }
   };
 
+  useEffect(() => {
+    if (token) {
+      navigate('/')
+    }
+  })
+
   return (
     <div className="auth-container">
       <div className="auth-content">
@@ -39,8 +46,7 @@ const Register = () => {
               className="auth-input"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
-              required
-            />
+              required/>
           </div>
           <div className="input-wrapper">
             <i className="fas fa-envelope auth-icon"></i>
@@ -50,8 +56,7 @@ const Register = () => {
               className="auth-input"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              required
-            />
+              required/>
           </div>
           <div className="input-wrapper">
             <i className="fas fa-lock auth-icon"></i>
@@ -61,8 +66,7 @@ const Register = () => {
               className="auth-input"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              required
-            />
+              required/>
           </div>
           <p className="auth-text">Debe tener más de 8 caracteres</p>
           <button type="submit" className="auth-button">Regístrate</button>

@@ -6,11 +6,12 @@ import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
-  const {backendUrl, token, setToken} = useContext(AppContext)
-  const navigate = useNavigate()
 
   const [email, setEmail] = useState(''); // Cambiado de username a email
   const [password, setPassword] = useState('');
+
+  const {backendUrl, token, setToken} = useContext(AppContext)
+  const navigate = useNavigate()
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -46,8 +47,7 @@ const Login = () => {
               className="auth-input"
               value={email} // Cambiado de username a email
               onChange={(e) => setEmail(e.target.value)} // Cambiado de setUsername a setEmail
-              required
-            />
+              required/>
           </div>
           <div className="input-wrapper">
             <i className="fas fa-lock auth-icon"></i>

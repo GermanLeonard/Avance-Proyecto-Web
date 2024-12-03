@@ -14,10 +14,11 @@ const Cancha = () => {
         Basketball: assets.CanchaBasketballEjemplo,
         Padel: assets.CanchaPadelEjemplo
       }
-    const navigate = useNavigate()
     const {canchaId} = useParams()
     const {canchas, moneda, backendUrl, token, getCanchasData} = useContext(AppContext)
     const diasSemana = ['DOM', 'LUN', 'MAR', 'MIE', 'JUE', 'VIE', 'SAB']
+
+    const navigate = useNavigate()
 
     const [canchaInfo, setCanchaInfo] = useState(null)
     const [reservaFecha, setReservaFecha] = useState([])
@@ -68,27 +69,31 @@ const Cancha = () => {
             setReservaFecha(prev => ([...prev, horasDisponibles]))
         }
     }
+
     const reservarCancha = async () => {
-        if(!token){
+        console.log(token)
+        console.log("canchaId enviado:", canchaId);
+        if (!token) {
             toast.warn('Inicia Sesión Para Reservar Canchas')
             return navigate('/login')
-        } try {
-            const date = reservaFecha[fechaIndex][0].fecha
-            let dia = date.getDate()
-            let mes = date.getMonth() + 1
-            let anio = date.getFullYear()
-            const espacioFecha = dia + '_' + mes + '_' + anio
-            console.log('Datos enviados:', { canchaId, espacioFecha, reservaHora });
-            const {data} = await axios.post(backendUrl + '/api/user/reservar-cancha', {canchaId, espacioFecha, reservaHora}, {headers:{token}})
-            if(data.success){
+        }
+        try {
+            const fecha = reservaFecha[fechaIndex][0].fecha
+            let dia = fecha.getDay()
+            let mes = fecha.getMonth() + 1
+            let anio = fecha.getFullYear()
+            const fullFecha = dia + "_" + mes + "_" + anio
+            console.log('Datos a enviar:', { canchaId, fullFecha, reservaHora });
+            const {data} = await axios.post(backendUrl + '/api/user/reservar-cancha', {canchaId, fullFecha, reservaHora}, {headers:{ Authorization: `Bearer ${token}` }})
+            if (data.success) {
                 toast.success(data.message)
-                getCanchasData()
                 navigate('/mis-reservas')
             }else{
+                console.log("ERROR")
                 toast.error(data.message)
             }
+            
         } catch (error) {
-            console.log(error)
             toast.error(error.message)
         }
     }
@@ -115,7 +120,7 @@ const Cancha = () => {
                     <p>{canchaInfo.name}</p>
                     <div>
                         <p>{canchaInfo.lugar}</p>
-                        <button>{canchaInfo.deporte}</button>
+                        <p>{canchaInfo.deporte}</p>
                     </div>
                 
                     <div className='cancha-descripcion'>

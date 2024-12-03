@@ -11,6 +11,10 @@ import CanchaFutbolEjemplo from './imagenes/canchaFutbolEjemplo.jpg'
 import CanchaBasketballEjemplo from './imagenes/CanchaBasketEjemplo.jpg'
 import CanchaPadelEjemplo from './imagenes/CanchaPadelEjemplo.jpg'
 import disponible from './imagenes/disponible.png'
+import instagram from './imagenes/instagram.png'
+import facebook from './imagenes/facebook.png'
+import twitter from './imagenes/twitter.png'
+import mongoose from 'mongoose';
 
 export const assets = {
     bkb,
@@ -20,9 +24,16 @@ export const assets = {
     userImg,
     dropdownIcon,
     disponible,
+<<<<<<< HEAD
     CanchaBasketballEjemplo,
     CanchaFutbolEjemplo,
     CanchaPadelEjemplo
+=======
+    instagram,
+    twitter,
+    facebook,
+    CanchaBasketEjemplo,
+>>>>>>> 5da7db89caba857437e9464fc62d689f2683d1fa
 }
 
 export const deporte = {
@@ -57,7 +68,7 @@ export const sucursal = [
 
 export const canchas = [
     {
-        id: 'cancha1',
+        id: new mongoose.Types.ObjectId(),
         name: 'futbol A1',
         image: CanchaFutbolEjemplo,
         lugar: sucursal[0].lugar,
@@ -66,10 +77,12 @@ export const canchas = [
         deporte: deporte.futbolDeporte,
         descripcion: 'cancha de futbol 11',
         capacidad: '30',
-        precioHora: 20
+        precioHora: 20,
+        espacios_reservados: {},
+        disponible: true
     },
     {
-        id: 'cancha2',
+        id: new mongoose.Types.ObjectId(),
         name: 'futbol A2',
         image: CanchaFutbolEjemplo,
         lugar: sucursal[0].lugar,
@@ -78,10 +91,12 @@ export const canchas = [
         deporte: deporte.futbolDeporte,
         descripcion: 'cancha de futbol sala',
         capacidad: '15',
-        precioHora: 10
+        precioHora: 10,
+        espacios_reservados: {},
+        disponible: true
     },
     {
-        id: 'cancha3',
+        id: new mongoose.Types.ObjectId(),
         name: 'futbol B1',
         image: CanchaFutbolEjemplo,
         lugar: sucursal[1].lugar,
@@ -90,10 +105,12 @@ export const canchas = [
         deporte: deporte.futbolDeporte,
         descripcion: 'cancha de futbol sala',
         capacidad: '15',
-        precioHora: 10
+        precioHora: 10,
+        espacios_reservados: {},
+        disponible: true
     },
     {
-        id: 'cancha4',
+        id: new mongoose.Types.ObjectId(),
         name: 'basketball B1',
         image: CanchaBasketballEjemplo,
         lugar: sucursal[1].lugar,
@@ -102,10 +119,12 @@ export const canchas = [
         deporte: deporte.basketballDeporte,
         descripcion: 'cancha de basketball con espacio cerrado',
         capacidad: '15',
-        precioHora: 8
+        precioHora: 8,
+        espacios_reservados: {},
+        disponible: true
     },
     {
-        id: 'cancha5',
+        id: new mongoose.Types.ObjectId(),
         name: 'basketball C1',
         image: CanchaBasketballEjemplo,
         lugar: sucursal[2].lugar,
@@ -114,10 +133,12 @@ export const canchas = [
         deporte: deporte.basketballDeporte,
         descripcion: 'cancha de basket para jugar ente amigos al aire libre',
         capacidad: '15',
-        precioHora: 8
+        precioHora: 8,
+        espacios_reservados: {},
+        disponible: true
     },
     {
-        id: 'cancha6',
+        id: new mongoose.Types.ObjectId(),
         name: 'padel C1',
         image: CanchaPadelEjemplo,
         lugar: sucursal[2].lugar,
@@ -126,10 +147,12 @@ export const canchas = [
         deporte: deporte.padelDeporte,
         descripcion: 'cancha de padel 2 vs 2',
         capacidad: '6',
-        precioHora: 30
+        precioHora: 30,
+        espacios_reservados: {},
+        disponible: true
     },
     {
-        id: 'cancha7',
+        id: new mongoose.Types.ObjectId(),
         name: 'padel C2',
         image: CanchaPadelEjemplo,
         lugar: sucursal[2].lugar,
@@ -138,6 +161,8 @@ export const canchas = [
         deporte: deporte.padelDeporte,
         descripcion: 'cancha de padel 2 vs 2',
         capacidad: '6',
-        precioHora: 30
+        precioHora: 30,
+        espacios_reservados: {},
+        disponible: true
     }
 ]

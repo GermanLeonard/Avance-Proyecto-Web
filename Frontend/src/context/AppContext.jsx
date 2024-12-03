@@ -32,7 +32,15 @@ const AppContextProvider = (props) => {
     const value = {
         canchas, getCanchasData, moneda, token, setToken, backendUrl
     }
-    
+
+    useEffect(() => {
+        if(token){
+
+        }else{
+            
+        }
+    },[token])
+
     return (
         <AppContext.Provider value={value}>
             {props.children}

@@ -1,77 +1,191 @@
 html, body {
-    overflow-y: auto; /* Debe permitir el scroll */
+    overflow-y: auto; /* Permite el scroll */
     height: 100%; /* Asegura que la página ocupe la altura completa */
+    font-family: 'Arial', sans-serif; /* Fuente estándar */
+    margin: 0;
+    padding: 0;
 }
 
-.cancha{
+.cancha {
     padding: 20px 40px;
+    background-color: #f8f9fa; /* Fondo suave */
 }
-.cancha-card{
+
+.cancha-card {
     display: flex;
     gap: 40px;
-    margin-top: 30px;
-    height: 300px;
-}
-.cancha-card-image{
-    height: 100%;
-    border-radius: 25px;
-}
-.cancha-info{
-    border: 1px solid gray;
+    margin-top: 100px;
+    background-color: #fff; /* Fondo blanco */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    border-radius: 20px;
     padding: 20px;
-    border-radius: 25px;
+    overflow: hidden;
 }
-.cancha-info button{
-    background: none;
+
+.cancha-card-image {
+    height: 100%;
+    border-radius: 20px;
+    max-width: 300px;
+    object-fit: cover; /* Asegura que la imagen se ajuste al contenedor */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.cancha-info {
+    border: 1px solid #ddd; /* Borde ligero */
+    padding: 20px;
+    border-radius: 20px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.cancha-info button {
+    background: #ff7a00;
+    color: white;
+    border: none;
     border-radius: 10px;
+    padding: 10px 15px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
-.cancha-info > p{
+
+.cancha-info button:hover {
+    background-color: #e06900;
+}
+
+.cancha-info > p {
     font-size: 24px;
     font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
 }
-.active-day{
-    background-color: aquamarine;
+
+.cancha-descripcion p {
+    margin: 5px 0;
+    color: #555;
+    line-height: 1.6;
 }
-.dia-reserva{
+
+.cancha-descripcion span {
+    font-weight: bold;
+    color: #ff7a00;
+}
+
+.opciones-reserva {
+    margin-top: 40px;
+    padding: 20px;
+    border-radius: 20px;
+    background-color: #fff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.opciones-reserva p {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+}
+
+.dia-reserva {
     display: flex;
     align-items: center;
-    width: 100%;
-    overflow-x: scroll;
-    gap: 50px;
-    text-align: center;
-    margin-top: 30px;
-    scrollbar-width: none;
-}
-.dia-reserva div{
-    cursor: pointer;
-    padding: 10px;
-    border-radius: 20px;
-    border: 1px solid black;
-}
-.hora-reserva{
+    gap: 15px;
     margin-top: 20px;
+    overflow-x: auto;
+    padding: 10px;
+    scrollbar-width: none; /* Oculta el scrollbar en navegadores compatibles */
+}
+
+.dia-reserva::-webkit-scrollbar {
+    display: none; /* Oculta el scrollbar en navegadores Webkit */
+}
+
+.dia-reserva div {
+    cursor: pointer;
+    padding: 10px 15px;
+    border-radius: 20px;
+    border: 1px solid #ddd;
+    background-color: #f9f9f9;
+    color: #333;
+    font-size: 14px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.dia-reserva div:hover {
+    background-color: #ff7a00;
+    color: white;
+    border-color: #ff7a00;
+}
+
+.dia-reserva .active-day {
+    background-color: #ff7a00;
+    color: white;
+    border-color: #ff7a00;
+}
+
+.hora-reserva {
     display: flex;
-    gap: 30px;
-    overflow-x: scroll;
+    gap: 15px;
+    margin-top: 20px;
+    overflow-x: auto;
+    padding: 10px;
     scrollbar-width: none;
 }
-.hora-reserva p{
-    display: flex;
-    padding: 10px;
-    border-radius: 20px;
-    border: 1px solid gray;
-    align-items: center;
-    text-align: center;
-    cursor: pointer;
-    color: gray;
+
+.hora-reserva::-webkit-scrollbar {
+    display: none;
 }
-.opciones-reserva button{
-    background-color: antiquewhite;
-    padding: 15px;
+
+.hora-reserva p {
+    padding: 10px 15px;
+    border-radius: 20px;
+    border: 1px solid #ddd;
+    background-color: #f9f9f9;
+    color: #555;
+    font-size: 14px;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.hora-reserva p:hover {
+    background-color: #ff7a00;
+    color: white;
+    border-color: #ff7a00;
+}
+
+.hora-reserva .active-day {
+    background-color: #ff7a00;
+    color: white;
+    border-color: #ff7a00;
+}
+
+.opciones-reserva button {
+    background-color: #ff7a00;
+    color: white;
+    border: none;
+    padding: 15px 20px;
     border-radius: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
     margin-top: 20px;
 }
-.relacionado-container{
-    margin: 0 auto;
-    max-width: 600px;
+
+.opciones-reserva button:hover {
+    background-color: #e06900;
+}
+
+.relacionado-container {
+    margin: 40px auto;
+    max-width: 800px;
+    background-color: #fff;
+    border-radius: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
 }
