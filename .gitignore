@@ -1,2 +1,4 @@
 # Ignore unnecessary files
 node_modules/
+backend/.env
+Frontend/.env
