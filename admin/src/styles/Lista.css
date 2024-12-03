@@ -1,0 +1,35 @@
+h1{
+    font-weight: 600;
+}
+.lista{
+    box-sizing: border-box;
+    display: flex;
+    padding: 0px;
+    flex-direction: column;
+    gap: 40px;
+    width: 80vw;
+    padding: 60px;
+}
+
+.canchas-card-container{
+    justify-content: center;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    gap: 40px;
+    row-gap: 60px;
+}
+.canchas-card{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 25px;
+    border: 2px solid #333;
+    text-align: center;
+}
+.canchas-card-img{
+    width: 150px;
+    border-radius: 25px;
+    margin-top: 25px;
+}

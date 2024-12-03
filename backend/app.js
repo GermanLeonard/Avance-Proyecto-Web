@@ -1,28 +1,27 @@
 import express from 'express'
 import cors from 'cors'
 import 'dotenv/config'
-import conectarDB from './config/mongodb.js'
-import adminRouter from './routes/adminRoutes.js'
-import userRouter from './routes/authRoutes.js'
+import connectDB from './config/mongodb.js'
+import adminGeneralRouter from './routes/adminGeneralRoute.js'
+import canchaRouter from './routes/canchaRoute.js'
+import userRouter from './routes/userRoute.js'
 
+//app config
 const app = express()
-const PORT = process.env.PORT || 3000;
-conectarDB()
+const port = process.env.PORT || 3000
+connectDB()
 
-// Middleware para analizar JSON y habilitar al frontend conectar con el backend
-app.use(express.json());
+//middlewares
+app.use(express.json())
 app.use(cors())
 
-// API endpoints
-app.use('/api/admin', adminRouter)
+//api endpoints
+app.use('/api/admin-general', adminGeneralRouter)
+app.use('/api/cancha', canchaRouter)
 app.use('/api/user', userRouter)
 
 app.get('/', (req, res) => {
-  res.send('prueba API')
+  res.send('API funcional')
 })
 
-// Inicia el servidor
-app.listen(PORT, () => {
-  console.log(`Servidor corriendo en el puerto ${PORT}`);
-});
-
+app.listen(port, () => console.log('servidor corriendo en puerto ', port))

@@ -61,20 +61,12 @@ function Reserva() {
             ))}
           </select>
         </div>
-        <div className="canchas-card-container">
-          {filterCancha.map((item) => (
-            <div
-              onClick={() => navigate(`/cancha/${item.id}`)}
-              key={item.id}
-              className="canchas-card"
-            >
-              <img
-                src={item.image}
-                alt={item.name}
-                className="canchas-card-img"
-              />
-              <div className="canchas-card-info">
-                <div>
+        <div className='canchas-card-container'>
+          {
+            filterCancha.map((item, index) => (
+              <div onClick={() => navigate(`/cancha/${item._id}`)} key={index} className='canchas-card'>
+                <img src={item.image} alt={item.name} className='canchas-card-img'/>
+                <div className="canchas-card-info">
                   <p>
                     <strong>{item.name}</strong>
                   </p>
@@ -90,7 +82,6 @@ function Reserva() {
                   <button>RESERVA</button>
                 </div>
               </div>
-            </div>
           ))}
         </div>
       </div>

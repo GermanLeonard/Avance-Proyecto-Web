@@ -5,12 +5,17 @@ import { useNavigate, useParams } from 'react-router-dom'
 import '../styles/Cancha.css'
 import Relacionado from '../components/Relacionado'
 import { toast } from 'react-toastify'
-import { canchas } from '../assets/assets'
 import axios from 'axios'
+import { assets } from '../assets/assets'
 
 const Cancha = () => {
+    const imagenes = {
+        Futbol: assets.CanchaFutbolEjemplo,
+        Basketball: assets.CanchaBasketballEjemplo,
+        Padel: assets.CanchaPadelEjemplo
+      }
     const {canchaId} = useParams()
-    const {canchas, moneda, backendUrl, token} = useContext(AppContext) //despues se pone el getCanchasData XX35
+    const {canchas, moneda, backendUrl, token, getCanchasData} = useContext(AppContext)
     const diasSemana = ['DOM', 'LUN', 'MAR', 'MIE', 'JUE', 'VIE', 'SAB']
 
     const navigate = useNavigate()
@@ -21,7 +26,7 @@ const Cancha = () => {
     const [reservaHora, setReservaHora] = useState('')
 
     const fetchCanchaInfo = async () => {
-        const canchaInfo = canchas.find(cancha => cancha.id == canchaId)
+        const canchaInfo = canchas.find(cancha => cancha._id == canchaId)
         setCanchaInfo(canchaInfo)
     }
 
@@ -38,7 +43,7 @@ const Cancha = () => {
             horaFin.setDate(ahora.getDate() + i)
             horaFin.setHours(22,0,0,0)
             //si ya pasó la hora final del día actual, omitir ese día
-            if (i === 0 && ahora >= 21) {
+            if (i === 0 && ahora.getHours() >= 21) {
                 continue
             }
             //poniendo horas
@@ -109,7 +114,7 @@ const Cancha = () => {
         <div className='cancha'>
             <div className='cancha-card'>
                 <div>
-                    <img src={canchaInfo.image} alt="" className='cancha-card-image'/>
+                    <img src={imagenes[canchaInfo.deporte]} alt="cancha" className='cancha-card-image'/>
                 </div>
                 <div className='cancha-info'>
                     <p>{canchaInfo.name}</p>
@@ -147,11 +152,7 @@ const Cancha = () => {
                         ))
                     }
                 </div>
-                <button onClick={() => {
-                    setReservaHora('')
-                    setFechaIndex(0)
-                    reservarCancha()
-                }}>Reservar Cancha</button>
+                <button onClick={() => {reservarCancha()}}>Reservar Cancha</button>
             </div>
             <Relacionado canchaId={canchaId} deporte={canchaInfo.deporte}/>
         </div>

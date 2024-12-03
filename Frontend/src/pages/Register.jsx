@@ -8,20 +8,18 @@ import { useNavigate } from 'react-router-dom';
 const Register = () => {
   const {backendUrl, token, setToken} = useContext(AppContext)
   const navigate = useNavigate()
-
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const handleRegister = async (e) => {
     e.preventDefault();
-
     try {
-      const {data} = await axios.post(backendUrl + '/api/user/register', {username, email, password})
-      if (data.success) {
+      const {data} = await axios.post(backendUrl + '/api/user/registrar', {username, email, password})
+      if(data.success){
         localStorage.setItem('token', data.token)
         setToken(data.token)
-      } else {
+      }else{
         toast.error(data.message)
       }
     } catch (error) {
@@ -48,9 +46,7 @@ const Register = () => {
               className="auth-input"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
-              required
-
-            />
+              required/>
           </div>
           <div className="input-wrapper">
             <i className="fas fa-envelope auth-icon"></i>
@@ -60,9 +56,7 @@ const Register = () => {
               className="auth-input"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              required
-
-            />
+              required/>
           </div>
           <div className="input-wrapper">
             <i className="fas fa-lock auth-icon"></i>
@@ -72,11 +66,9 @@ const Register = () => {
               className="auth-input"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              required
-
-            />
+              required/>
           </div>
-          <p className="auth-text">Debe tener más de 6 caracteres</p>
+          <p className="auth-text">Debe tener más de 8 caracteres</p>
           <button type="submit" className="auth-button">Regístrate</button>
           <a href="/login" className="auth-link">¿Ya tienes cuenta? Ingresa ahora</a>
         </form>

@@ -4,17 +4,14 @@ import { Navigate, NavLink, useNavigate } from 'react-router-dom'
 import { AppContext } from '../context/AppContext'
 
 const Navbar = () => {
-    const [showMenu, setShowMenu] = useState(false) //para el menu de responsive para celular
-
+    const [showMenu, setShowMenu] = useState(false) //para el menu desplegable en mobile
     const {token, setToken} = useContext(AppContext)
+    const navigate = useNavigate()
 
     const logout = () => {
         setToken(false)
         localStorage.removeItem('token')
     }
-
-    const navigate = useNavigate()
-
   return (
     <nav className="navbar">
         <div onClick={()=>navigate('/')} className="logo">
