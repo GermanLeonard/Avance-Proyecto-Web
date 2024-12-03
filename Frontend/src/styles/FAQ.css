@@ -15,7 +15,8 @@
     color: #ff6600;
     background-color: #fff;
     padding: 10px 20px;
-    border-radius: 8px;
+    border-radius:  16px;
+    text-shadow: 0px 4px 4px rgba(240, 240, 240, 0.5);
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     margin-bottom: 20px;
   }
@@ -52,6 +53,8 @@
     font-size: 0.9em;
     color: #666;
   }
+
+
   
   
   

@@ -11,6 +11,9 @@ import CanchaFutbolEjemplo from './imagenes/canchaFutbolEjemplo.jpg'
 import CanchaBasketballEjemplo from './imagenes/CanchaBasketEjemplo.jpg'
 import CanchaPadelEjemplo from './imagenes/CanchaPadelEjemplo.jpg'
 import disponible from './imagenes/disponible.png'
+import instagram from './imagenes/instagram.png'
+import facebook from './imagenes/facebook.png'
+import twitter from './imagenes/twitter.png'
 import mongoose from 'mongoose';
 
 export const assets = {
@@ -21,9 +24,16 @@ export const assets = {
     userImg,
     dropdownIcon,
     disponible,
+<<<<<<< HEAD
     CanchaBasketballEjemplo,
     CanchaFutbolEjemplo,
     CanchaPadelEjemplo
+=======
+    instagram,
+    twitter,
+    facebook,
+    CanchaBasketEjemplo,
+>>>>>>> 5da7db89caba857437e9464fc62d689f2683d1fa
 }
 
 export const deporte = {
