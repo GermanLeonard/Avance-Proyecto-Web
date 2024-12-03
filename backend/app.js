@@ -1,27 +1,27 @@
-const express = require('express');
-const mongoose = require('mongoose');
-const cors = require('cors');
-const dotenv = require('dotenv');
-const authRoutes = require('./routes/authRoutes');
+import express from 'express'
+import cors from 'cors'
+import 'dotenv/config'
+import connectDB from './config/mongodb.js'
+import adminGeneralRouter from './routes/adminGeneralRoute.js'
+import canchaRouter from './routes/canchaRoute.js'
+import userRouter from './routes/userRoute.js'
 
-dotenv.config();
-const app = express();
-app.use(cors());
-const PORT = process.env.PORT || 3000;
+//app config
+const app = express()
+const port = process.env.PORT || 3000
+connectDB()
 
-// Middleware para analizar JSON
-app.use(express.json());
+//middlewares
+app.use(express.json())
+app.use(cors())
 
-// Conexión a MongoDB
-mongoose.connect(process.env.MONGO_URI)
-  .then(() => console.log('Conectado a MongoDB'))
-  .catch((err) => console.error('Error al conectar a MongoDB:', err));
+//api endpoints
+app.use('/api/admin-general', adminGeneralRouter)
+app.use('/api/cancha', canchaRouter)
+app.use('/api/user', userRouter)
 
-// Usar rutas de autenticación
-app.use('/api/auth', authRoutes);
+app.get('/', (req, res) => {
+  res.send('API funcional')
+})
 
-// Inicia el servidor
-app.listen(PORT, () => {
-  console.log(`Servidor corriendo en el puerto ${PORT}`);
-});
-
+app.listen(port, () => console.log('servidor corriendo en puerto ', port))
