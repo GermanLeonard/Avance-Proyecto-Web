@@ -8,7 +8,7 @@ const reservaSchema = new mongoose.Schema({
     userData: {type: Object, required: true},
     canchaData: {type: Object, required: true},
     precio: {type: Number, required: true},
-    fecha: {type: Number, required: true},
+    fecha: {type: Date, required: true},
     cancelado: {type: Boolean, default: false},
     pago: {type: Boolean, default: false},
     completada: {type: Boolean, default: false},

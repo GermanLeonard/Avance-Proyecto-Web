@@ -24,16 +24,12 @@ export const assets = {
     userImg,
     dropdownIcon,
     disponible,
-<<<<<<< HEAD
     CanchaBasketballEjemplo,
     CanchaFutbolEjemplo,
-    CanchaPadelEjemplo
-=======
+    CanchaPadelEjemplo,
     instagram,
     twitter,
     facebook,
-    CanchaBasketEjemplo,
->>>>>>> 5da7db89caba857437e9464fc62d689f2683d1fa
 }
 
 export const deporte = {

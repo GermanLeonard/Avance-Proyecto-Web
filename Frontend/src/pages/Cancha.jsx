@@ -79,17 +79,17 @@ const Cancha = () => {
         }
         try {
             const fecha = reservaFecha[fechaIndex][0].fecha
-            let dia = fecha.getDay()
+            let dia = fecha.getDate()
             let mes = fecha.getMonth() + 1
             let anio = fecha.getFullYear()
-            const fullFecha = dia + "_" + mes + "_" + anio
-            console.log('Datos a enviar:', { canchaId, fullFecha, reservaHora });
-            const {data} = await axios.post(backendUrl + '/api/user/reservar-cancha', {canchaId, fullFecha, reservaHora}, {headers:{ Authorization: `Bearer ${token}` }})
+            const espacioFecha = dia + "_" + mes + "_" + anio
+            console.log('Datos a enviar:', { canchaId, espacioFecha, reservaHora });
+            const {data} = await axios.post(backendUrl + '/api/user/reservar-cancha', {canchaId, espacioFecha, reservaHora}, {headers:{token}})
             if (data.success) {
                 toast.success(data.message)
                 navigate('/mis-reservas')
             }else{
-                console.log("ERROR")
+                console.log(data.message)
                 toast.error(data.message)
             }
             

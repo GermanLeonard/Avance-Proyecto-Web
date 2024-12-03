@@ -4,7 +4,6 @@ import { Navigate, NavLink, useNavigate } from "react-router-dom";
 import { AppContext } from "../context/AppContext";
 
 const Navbar = () => {
-<<<<<<< HEAD
     const [showMenu, setShowMenu] = useState(false) //para el menu desplegable en mobile
     const {token, setToken} = useContext(AppContext)
     const navigate = useNavigate()
@@ -13,19 +12,6 @@ const Navbar = () => {
         setToken(false)
         localStorage.removeItem('token')
     }
-=======
-  const [showMenu, setShowMenu] = useState(false); //para el menu de responsive para celular
-
-  const { token, setToken } = useContext(AppContext);
-
-  const logout = () => {
-    setToken(false);
-    localStorage.removeItem("token");
-  };
-
-  const navigate = useNavigate();
-
->>>>>>> 5da7db89caba857437e9464fc62d689f2683d1fa
   return (
     <nav className="navbar">
       <div onClick={() => navigate("/")} className="logo">
@@ -81,3 +67,4 @@ const Navbar = () => {
 };
 
 export default Navbar;
+

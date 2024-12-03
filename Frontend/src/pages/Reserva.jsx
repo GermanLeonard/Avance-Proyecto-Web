@@ -43,9 +43,11 @@ function Reserva() {
             }}
           >
             <option value="">Todas las sucursales</option>
-            {lugar.map((item) => (
-              <option key={item.id} value={item.id}>
-                {item.lugar}
+            {Array.from(
+              new Map(canchas.map((item) => [item.lugar, item.lugar_id]))
+            ).map(([lugar, lugar_id]) => (
+              <option key={lugar_id} value={lugar_id}>
+                {lugar}
               </option>
             ))}
           </select>
@@ -54,34 +56,43 @@ function Reserva() {
             onChange={(e) => setSelectedDeporte(e.target.value)}
           >
             <option value="">Todos los deportes</option>
-            {Object.keys(deporte).map((key) => (
-              <option key={key} value={deporte[key]}>
-                {deporte[key]}
-              </option>
-            ))}
+            {Array.from(new Set(canchas.map((item) => item.deporte))).map(
+              (deporte, index) => (
+                <option key={index} value={deporte}>
+                  {deporte}
+                </option>
+              )
+            )}
           </select>
         </div>
-        <div className='canchas-card-container'>
-          {
-            filterCancha.map((item, index) => (
-              <div onClick={() => navigate(`/cancha/${item._id}`)} key={index} className='canchas-card'>
-                <img src={item.image} alt={item.name} className='canchas-card-img'/>
-                <div className="canchas-card-info">
-                  <p>
-                    <strong>{item.name}</strong>
-                  </p>
-                  <p>{item.lugar}</p>
-                </div>
-                <div
-                  style={{ display: "flex", alignItems: "center", gap: "15px" }}
-                >
-                  <div className="cancha-estado">
-                    <img src={assets.disponible} alt="Disponible" />
-                    Disponible
-                  </div>
-                  <button>RESERVA</button>
-                </div>
+        <div className="canchas-card-container">
+          {filterCancha.map((item, index) => (
+            <div
+              onClick={() => navigate(`/cancha/${item._id}`)}
+              key={index}
+              className="canchas-card"
+            >
+              <img
+                src={item.image}
+                alt={item.name}
+                className="canchas-card-img"
+              />
+              <div className="canchas-card-info">
+                <p>
+                  <strong>{item.name}</strong>
+                </p>
+                <p>{item.lugar}</p>
               </div>
+              <div
+                style={{ display: "flex", alignItems: "center", gap: "15px" }}
+              >
+                <div className="cancha-estado">
+                  <img src={assets.disponible} alt="Disponible" />
+                  Disponible
+                </div>
+                <button>RESERVA</button>
+              </div>
+            </div>
           ))}
         </div>
       </div>

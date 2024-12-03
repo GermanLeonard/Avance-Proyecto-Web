@@ -49,6 +49,7 @@ const addCancha = async(req, res) => {
         if(!name, !lugar, !lugar_id, !direccion, !deporte, !descripcion, !capacidad, !precioHora){
             return res.json({success: false, message: "Detalles Faltantes"})
         }
+        
 
 
         const canchaData = {
