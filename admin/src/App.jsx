@@ -12,6 +12,8 @@ import AgregarEmpleado from './pages/adminGeneral/AgregarEmpleado'
 import AgregarCancha from './pages/adminGeneral/AgregarCancha'
 import ListaTodasCanchas from './pages/adminGeneral/ListaTodasCanchas'
 import './styles/Sidebar.css'
+import EliminarReservas from './pages/adminGeneral/VerReservas'
+import VerReservas from './pages/adminGeneral/VerReservas'
 
 
 const App = () => {
@@ -23,12 +25,12 @@ const App = () => {
         <Sidebar/>
         <Routes>
           <Route path='/' element={<></>}/>
-          <Route path='/admin-general-dashboard' element={<DashboardGeneral/>}/>
-          <Route path='/admin-general-reservas' element={<ReservasTodas/>}/>
-          <Route path='/admin-general-estadisticas' element={<EstadisticasGeneral/>}/>
-          <Route path='/admin-general-agregar-empleado' element={<AgregarEmpleado/>}/>
-          <Route path='/admin-general-agregar-cancha' element={<AgregarCancha/>}/>
-          <Route path='/admin-general-lista-canchas' element={<ListaTodasCanchas/>}/>
+          <Route path='/admin-dashboard' element={<DashboardGeneral/>}/>
+          <Route path='/admin-reservas' element={<VerReservas/>}/>
+          <Route path='/admin-estadisticas' element={<EstadisticasGeneral/>}/>
+          <Route path='/admin-agregar-empleado' element={<AgregarEmpleado/>}/>
+          <Route path='/admin-agregar-cancha' element={<AgregarCancha/>}/>
+          <Route path='/admin-lista-canchas' element={<ListaTodasCanchas/>}/>
         </Routes>
       </div>
     </div>

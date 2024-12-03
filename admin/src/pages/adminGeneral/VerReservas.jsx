@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "../../styles/VerReservas.css";
 
-const ReservasTodas = () => {
+const VerReservas = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
 
@@ -20,25 +20,37 @@ const ReservasTodas = () => {
 
   const totalPages = Math.ceil(data.length / itemsPerPage);
 
+  const handleDelete = (index) => {
+    alert(`Eliminar reserva ${currentData[index].name}`);
+    // Aquí puedes agregar la lógica para eliminar la reserva
+  };
+
   return (
-    <div className="reservas-container">
-      <h1>RESERVAS GLOBALES</h1>
-      <div className="search-section">
-        <select className="search-input">
-          <option value="Los próceres">Sucursal</option>
+    <div className="eliminar-reservas-container">
+      {/* Título */}
+      <h1 className="title">RESERVAS GLOBALES</h1>
+
+      {/* Filtros */}
+      <div className="filter-section">
+        <select className="filter-input">
+          <option value="">Sucursal</option>
+          <option value="los proceres">Los próceres</option>
+          <option value="sucursal 2">Sucursal 2</option>
         </select>
-        <select className="search-input">
-          <option value="Padel">Deporte</option>
+        <select className="filter-input">
+          <option value="">Deporte</option>
+          <option value="Padel">Padel</option>
+          <option value="Futbol">Fútbol</option>
         </select>
-        <button className="search-button">BUSCAR</button>
+        <button className="filter-button">BUSCAR</button>
       </div>
+
+      {/* Tabla */}
       <div className="table-container">
-        <div className="table-header">
-          <div className="header-text">Reservas Globales</div>
+        <div className="header-with-pagination">
+          <p className="header-text">Reservas globales</p>
           <div className="pagination">
-            <button
-              onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
-            >
+            <button onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}>
               &lt;
             </button>
             {Array.from({ length: totalPages }).map((_, index) => (
@@ -50,11 +62,7 @@ const ReservasTodas = () => {
                 {index + 1}
               </button>
             ))}
-            <button
-              onClick={() =>
-                setCurrentPage((prev) => Math.min(prev + 1, totalPages))
-              }
-            >
+            <button onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}>
               &gt;
             </button>
           </div>
@@ -68,6 +76,7 @@ const ReservasTodas = () => {
               <th>Sucursal</th>
               <th>Hora</th>
               <th>Precio</th>
+              <th>Eliminar</th>
             </tr>
           </thead>
           <tbody>
@@ -79,6 +88,12 @@ const ReservasTodas = () => {
                 <td>{item.location}</td>
                 <td>{item.time}</td>
                 <td>{item.price}</td>
+                <td>
+                  <i
+                    className="fas fa-trash-alt delete-icon"
+                    onClick={() => handleDelete(index)}
+                  ></i>
+                </td>
               </tr>
             ))}
           </tbody>
@@ -88,4 +103,4 @@ const ReservasTodas = () => {
   );
 };
 
-export default ReservasTodas;
+export default VerReservas;
