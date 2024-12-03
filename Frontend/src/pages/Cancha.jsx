@@ -6,8 +6,14 @@ import '../styles/Cancha.css'
 import Relacionado from '../components/Relacionado'
 import { toast } from 'react-toastify'
 import axios from 'axios'
+import { assets } from '../assets/assets'
 
 const Cancha = () => {
+    const imagenes = {
+        Futbol: assets.CanchaFutbolEjemplo,
+        Basketball: assets.CanchaBasketballEjemplo,
+        Padel: assets.CanchaPadelEjemplo
+      }
     const navigate = useNavigate()
     const {canchaId} = useParams()
     const {canchas, moneda, backendUrl, token, getCanchasData} = useContext(AppContext)
@@ -103,7 +109,7 @@ const Cancha = () => {
         <div className='cancha'>
             <div className='cancha-card'>
                 <div>
-                    <img src={canchaInfo.image} alt="" className='cancha-card-image'/>
+                    <img src={imagenes[canchaInfo.deporte]} alt="cancha" className='cancha-card-image'/>
                 </div>
                 <div className='cancha-info'>
                     <p>{canchaInfo.name}</p>
