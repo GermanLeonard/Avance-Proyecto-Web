@@ -9,12 +9,6 @@ const Contacto = () => {
     message: ''
   });
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Aca te puse lo de el console log si te sirve en la API (borrar luego xd)
-    console.log('Datos del formulario:', formData);
-  };
-
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -24,33 +18,36 @@ const Contacto = () => {
 
   return (
     <div className="contact-container">
-      <div className="contact-header">Contactanos</div>
+      <div className="contact-header">Contáctanos</div>
       <div className="contact-wrapper">
-        {/* Decoracion */}
         <div className="info-section">
-          {/* Los circulitos */}
           <div className="decoration-circle-1"></div>
           <div className="decoration-circle-2"></div>
-          
           <div className="info-content">
             <h2>Danos un toque para más información</h2>
             <p>
-              Regístrate y disfruta de todas las ventajas que te ofrecemos, 
+              Regístrate y disfruta de todas las ventajas que te ofrecemos,
               introduce tus datos y nos pondremos en contacto contigo.
             </p>
           </div>
         </div>
 
-        {/* Formulario */}
         <div className="form-section">
-          <form onSubmit={handleSubmit}>
+          <form 
+            action="https://formsubmit.co/sportspotsv@gmail.com" 
+            method="POST"
+          >
+            {/* Atributos necesarios para Formsubmit */}
+            <input type="hidden" name="_captcha" value="false" />
+            <input type="hidden" name="_next" value="https://localhost:5173" />
+
             <div className="form-group">
               <input
                 type="text"
                 name="name"
                 value={formData.name}
                 onChange={handleChange}
-                placeholder="John Smith"
+                placeholder="Nombre"
                 required
               />
             </div>

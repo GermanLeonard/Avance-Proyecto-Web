@@ -25,7 +25,7 @@ const Nosotros = () => {
             </p>
           </div>
         </div>
-        <img src={image} alt="Deporte" className='imagen-deporte' /> {/* Imagen añadida */}
+        <img src={image} alt="Deporte" className='imagen-deporte' /> 
       </div>
     </div>
   );

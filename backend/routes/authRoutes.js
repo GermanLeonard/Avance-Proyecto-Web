@@ -1,13 +1,19 @@
-import express from 'express'
-import { registerUser, loginUser, reservarCancha } from '../controllers/authController.js';
+import express from 'express';
+import { registerUser, loginUser, reservarCancha, obtenerReservas} from '../controllers/authController.js';
+import { canchaList, obtenerCancha } from '../controllers/canchaController.js';
 import authUser from '../middlewares/authUser.js';
+
 const userRouter = express.Router();
 
-// Ruta para registrarse
+// Rutas de usuarios
 userRouter.post('/register', registerUser);
-// Ruta para iniciar sesión
 userRouter.post('/login', loginUser);
-userRouter.post('/reservar-cancha', authUser, reservarCancha)
+userRouter.post('/reservar-cancha', authUser, reservarCancha);
+userRouter.get('/mis-reservas', authUser, obtenerReservas);
 
-export default userRouter
+// Rutas de canchas
+userRouter.get('/canchas', canchaList);
+userRouter.get('/canchas/:id', obtenerCancha);
+
+export default userRouter;
 

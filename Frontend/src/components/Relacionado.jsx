@@ -1,46 +1,101 @@
-import React, { useContext, useEffect, useState } from 'react'
-import { AppContext } from '../context/AppContext'
-import { useNavigate } from 'react-router-dom'
-import { assets } from '../assets/assets'
-import '../styles/Cancha.css'
-import '../styles/Reserva.css'
+import React, { useContext, useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { AppContext } from "../context/AppContext";
+import { Navigate, NavLink, useNavigate } from "react-router-dom";
+import { sucursal as lugar, deporte } from "../assets/assets";
+import "../styles/Reserva.css";
+import { assets } from "../assets/assets";
 
-const Relacionado = ({canchaId, deporte}) => {
+function Reserva() {
+  const navigate = useNavigate();
+  const { sucursal } = useParams();
+  const { canchas } = useContext(AppContext);
 
-    const {canchas} = useContext(AppContext)
-    const [canchasRelacionadas, setCanchasRelacionadas] = useState([])
-    const navigate = useNavigate()
+  const [filterCancha, setFilterCancha] = useState([]);
+  const [selectedDeporte, setSelectedDeporte] = useState("");
+  const [selectedSucursal, setSelectedSucursal] = useState(sucursal || "");
 
-    useEffect(() => {
-        if (canchas.length > 0 && deporte){
-            const canchaData = canchas.filter((cancha) => cancha.deporte == deporte && cancha.id !== canchaId)
-            setCanchasRelacionadas(canchaData)
-        }
-    },[canchas, canchaId, deporte])
+  useEffect(() => {
+    let filtrado = canchas;
+    if (selectedSucursal) {
+      filtrado = filtrado.filter(
+        (cancha) => cancha.lugar_id == selectedSucursal
+      );
+    }
+    if (selectedDeporte) {
+      filtrado = filtrado.filter((cancha) => cancha.deporte == selectedDeporte);
+    }
+    setFilterCancha(filtrado);
+  }, [canchas, selectedSucursal, selectedDeporte]);
 
   return (
-    <div>
-        <h1>Canchas relacionadas</h1>
-        <p>Explora más canchas</p>
-        <div className='canchas-card-container relacionado-container'>
-            {canchasRelacionadas.slice(0,5).map((item, index) => (
-                <div onClick={() => {navigate(`/cancha/${item.id}`); document.body.scrollTop = 0}} key={index} className='canchas-card'>
-                    <img src={item.image} alt="" className='canchas-card-img'/>
-                    <div>
-                        <div>
-                            <p>
-                            Disponible
-                            <img src={assets.disponible} alt="" className="cancha-estado" />
-                            </p>
-                        </div>
-                        <p>{item.name}</p>
-                        <p>{item.lugar}</p>
-                    </div>
-                </div>
+    <div className="reserva">
+      <p>Reserva de Instalaciones Deportivas</p>
+      <div className="reserva-content">
+        <div className="reserva-filtro">
+          <select
+            value={selectedSucursal}
+            onChange={(e) => {
+              setSelectedSucursal(e.target.value);
+              navigate(
+                e.target.value ? `/reserva/${e.target.value}` : "/reserva"
+              );
+            }}
+          >
+            <option value="">Todas las sucursales</option>
+            {lugar.map((item) => (
+              <option key={item.id} value={item.id}>
+                {item.lugar}
+              </option>
             ))}
+          </select>
+          <select
+            value={selectedDeporte}
+            onChange={(e) => setSelectedDeporte(e.target.value)}
+          >
+            <option value="">Todos los deportes</option>
+            {Object.keys(deporte).map((key) => (
+              <option key={key} value={deporte[key]}>
+                {deporte[key]}
+              </option>
+            ))}
+          </select>
         </div>
+        <div className="canchas-card-container">
+          {filterCancha.map((item) => (
+            <div
+              onClick={() => navigate(`/cancha/${item.id}`)}
+              key={item.id}
+              className="canchas-card"
+            >
+              <img
+                src={item.image}
+                alt={item.name}
+                className="canchas-card-img"
+              />
+              <div className="canchas-card-info">
+                <div>
+                  <p>
+                    <strong>{item.name}</strong>
+                  </p>
+                  <p>{item.lugar}</p>
+                </div>
+                <div
+                  style={{ display: "flex", alignItems: "center", gap: "15px" }}
+                >
+                  <div className="cancha-estado">
+                    <img src={assets.disponible} alt="Disponible" />
+                    Disponible
+                  </div>
+                  <button>RESERVA</button>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
-  )
+  );
 }
 
-export default Relacionado
+export default Reserva;

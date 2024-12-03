@@ -1,6 +1,6 @@
 html, body {
-    overflow-y: auto; /* Debe permitir el scroll */
-    height: 100%; /* Asegura que la página ocupe la altura completa */
+    overflow-y: auto; 
+    height: 100%; 
 }
 
 .cancha{

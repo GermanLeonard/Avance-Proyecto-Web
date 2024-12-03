@@ -1,13 +1,13 @@
 import React, { useContext, useEffect, useState } from 'react';
-import '../styles/Register.css';
+import '../styles/Register.css'; 
 import { AppContext } from '../context/AppContext';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 
 const Register = () => {
-  const {backendUrl, token, setToken} = useContext(AppContext)
-  const navigate = useNavigate()
+  const { backendUrl, token, setToken } = useContext(AppContext);
+  const navigate = useNavigate();
 
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
@@ -17,68 +17,73 @@ const Register = () => {
     e.preventDefault();
 
     try {
-      const {data} = await axios.post(backendUrl + '/api/user/register', {username, email, password})
+      const { data } = await axios.post(backendUrl + '/api/user/register', {
+        username,
+        email,
+        password,
+      });
       if (data.success) {
-        localStorage.setItem('token', data.token)
-        setToken(data.token)
+        localStorage.setItem('token', data.token);
+        setToken(data.token);
       } else {
-        toast.error(data.message)
+        toast.error(data.message);
       }
     } catch (error) {
-      toast.error(error.message)
+      toast.error(error.message);
     }
   };
 
   useEffect(() => {
     if (token) {
-      navigate('/')
+      navigate('/');
     }
-  })
+  });
 
   return (
-    <div className="auth-container">
-      <div className="auth-content">
-        <form className="auth-form" onSubmit={handleRegister}>
+    <div className="register-container">
+      <div className="register-content">
+        <form className="register-form" onSubmit={handleRegister}>
           <h1>Regístrate</h1>
-          <div className="input-wrapper">
-            <i className="fas fa-user auth-icon"></i>
+          <div className="register-input-wrapper">
+            <i className="fas fa-user register-icon"></i>
             <input
               type="text"
               placeholder="Nombre de usuario"
-              className="auth-input"
+              className="register-input"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
               required
-
             />
           </div>
-          <div className="input-wrapper">
-            <i className="fas fa-envelope auth-icon"></i>
+          <div className="register-input-wrapper">
+            <i className="fas fa-envelope register-icon"></i>
             <input
               type="email"
               placeholder="Correo electrónico"
-              className="auth-input"
+              className="register-input"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
-
             />
           </div>
-          <div className="input-wrapper">
-            <i className="fas fa-lock auth-icon"></i>
+          <div className="register-input-wrapper">
+            <i className="fas fa-lock register-icon"></i>
             <input
               type="password"
               placeholder="Contraseña"
-              className="auth-input"
+              className="register-input"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
-
             />
           </div>
-          <p className="auth-text">Debe tener más de 6 caracteres</p>
-          <button type="submit" className="auth-button">Regístrate</button>
-          <a href="/login" className="auth-link">¿Ya tienes cuenta? Ingresa ahora</a>
+          <p className="register-text">Debe tener más de 6 caracteres</p>
+          <button type="submit" className="register-button">
+            Regístrate
+          </button>
+          <a href="/login" className="register-link">
+            ¿Ya tienes cuenta? Ingresa ahora
+          </a>
         </form>
       </div>
     </div>

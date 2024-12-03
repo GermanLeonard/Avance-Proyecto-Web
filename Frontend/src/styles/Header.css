@@ -118,33 +118,33 @@ body, html {
 }
 
 .register-btn {
-  background-color: grey; /* Color de fondo claro */
-  color: #ff7a00; /* Color de texto naranja */
+  background-color: grey;
+  color: #ff7a00; 
   border: none;
-  border-radius: 20px; /* Bordes redondeados */
+  border-radius: 20px; 
   padding: 0.5rem 1rem;
   font-size: 1rem;
   font-weight: bold;
   cursor: pointer;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
   transition: all 0.3s ease;
 }
 
 .register-btn:hover {
-  background-color: #e0e0e0; /* Fondo un poco más oscuro al hacer hover */
-  transform: translateY(-2px); /* Efecto de elevación */
+  background-color: #e0e0e0; 
+  transform: translateY(-2px); 
 }
 
 .login-btn {
-  background-color: #ff7a00; /* Color de fondo naranja */
-  color: white; /* Color de texto blanco */
+  background-color: #ff7a00; 
+  color: white; 
   border: none;
-  border-radius: 20px; /* Bordes redondeados */
+  border-radius: 20px; 
   padding: 0.5rem 1rem;
   font-size: 1rem;
   font-weight: bold;
   cursor: pointer;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
   transition: all 0.3s ease;
 }
 

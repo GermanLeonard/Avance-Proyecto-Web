@@ -46,6 +46,7 @@ const Navbar = () => {
                     <div className='nav-dropdown-container'>
                         <div className='nav-dropdown'>
                             <p onClick={()=>navigate('mis-reservas')}>Mis Reservas</p>
+                            <p onClick={() => navigate('opciones')}>Opciones</p>
                             <p onClick={logout}>Cerrar Sesión</p>
                         </div>
                     </div>

@@ -64,54 +64,72 @@ const loginUser = async (req, res) => {
     res.status(400).json({ message: 'Error al iniciar sesión', error });
   }
 };
-
+//----------------------------
+// Reservar una cancha
 const reservarCancha = async (req, res) => {
   try {
-    const {userId, canchaId, reservaFecha, reservaHora} = req.body
-    const canchaData = await canchaModel.findById(canchaId)
+      const { canchaId, reservaFecha, reservaHora } = req.body;
+      const userId = req.user.id; // ID del usuario autenticado
 
-    if (!canchaData.disponible) {
-      return res.json({success: false, message:'Cancha NO Disponible'})
-    }
-
-    let espacios_reservados = canchaData.espacios_reservados
-
-    if (espacios_reservados[reservaFecha]){
-      if(espacios_reservados[reservaFecha].includes(reservaHora)){
-        return res.json({success: false, message:'Espacio NO Disponible'})
-      } else{
-        espacios_reservados[reservaFecha].push(reservaHora)
+      if (!userId) {
+          return res.json({ success: false, message: "Usuario no autenticado" });
       }
-    } else{
-      espacios_reservados[reservaFecha] = []
-      espacios_reservados[reservaFecha].push(reservaHora)
-    }
 
-    const userData = await userModel.findById(userId).select('-password')
-    delete canchaData.espacios_reservados //no queremos los espacios reservados en el canchaData de reservaModel
-    const reservaData = {
-      userId,
-      canchaId,
-      userData,
-      canchaData,
-      cantidad: canchaData.precioHora,
-      reservaHora,
-      reservaFecha,
-      fecha: Date.now()
-    }
+      const canchaData = await canchaModel.findById(canchaId);
 
-    const newReserva = new reservaModel(reservaData)
-    await newReserva.save()
+      if (!canchaData.disponible) {
+          return res.json({ success: false, message: "Cancha NO Disponible" });
+      }
 
-    await canchaModel.findByIdAndUpdate(canchaId,{espacios_reservados})
-    res.json({success:true, message:'Cancha Reservada'})
+      let espacios_reservados = canchaData.espacios_reservados;
 
+      if (espacios_reservados[reservaFecha]) {
+          if (espacios_reservados[reservaFecha].includes(reservaHora)) {
+              return res.json({ success: false, message: "Espacio NO Disponible" });
+          } else {
+              espacios_reservados[reservaFecha].push(reservaHora);
+          }
+      } else {
+          espacios_reservados[reservaFecha] = [];
+          espacios_reservados[reservaFecha].push(reservaHora);
+      }
+
+      const userData = await User.findById(userId).select("-password");
+      delete canchaData.espacios_reservados; // Eliminamos espacios reservados para evitar redundancia en la reserva
+
+      const reservaData = {
+          userId,
+          canchaId,
+          userData,
+          canchaData,
+          cantidad: canchaData.precioHora,
+          reservaHora,
+          reservaFecha,
+          fecha: Date.now(),
+      };
+
+      const newReserva = new reservaModel(reservaData);
+      await newReserva.save();
+
+      await canchaModel.findByIdAndUpdate(canchaId, { espacios_reservados });
+      res.json({ success: true, message: "Cancha Reservada" });
   } catch (error) {
-    res.json({success: false, message: error.message})
+      res.json({ success: false, message: error.message });
   }
-}
+};
 
-export {registerUser, loginUser, reservarCancha}
+
+// Obtener reservas del usuario
+ const obtenerReservas = async (req, res) => {
+  try {
+    const reservas = await reservaModel.find({ userId: req.user.id });
+    res.json({ success: true, reservas });
+  } catch (error) {
+    res.status(500).json({ success: false, message: "Error al obtener las reservas: " + error.message });
+  }
+};
+
+export { registerUser, loginUser, reservarCancha, obtenerReservas };
 
 
   
