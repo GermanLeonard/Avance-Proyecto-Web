@@ -1,25 +1,23 @@
-
-import React, {useContext} from 'react'
-import { assets } from '../assets/assets'
-import { AdminGeneralContext } from '../context/AdminGeneralContext'
-import '../styles/Sidebar.css'
-import {NavLink, useNavigate} from 'react-router-dom'
+import React, { useContext } from 'react';
+import { assets } from '../assets/assets';
+import { AdminGeneralContext } from '../context/AdminGeneralContext';
+import '../styles/Sidebar.css';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 const Sidebar = () => {
-    const {adminGeneralToken, setAdminGeneralToken} = useContext(AdminGeneralContext)
-    const navigate = useNavigate()
+  const { adminGeneralToken, setAdminGeneralToken } = useContext(AdminGeneralContext);
+  const navigate = useNavigate();
 
-    const logout = () => {
-        navigate('/')
-        adminGeneralToken && setAdminGeneralToken('')
-        adminGeneralToken && localStorage.removeItem('adminGeneralToken')
-
+  const logout = () => {
+    navigate('/');
+    if (adminGeneralToken) {
+      setAdminGeneralToken('');
+      localStorage.removeItem('adminGeneralToken');
     }
   };
 
   return (
     <div className="opciones-container reservas-page">
-
       <aside className="sidebar">
         <div className="logo-container">
           <img src={assets.logo} alt="Sport Spot Logo" className="logo" />
@@ -60,3 +58,5 @@ const Sidebar = () => {
 };
 
 export default Sidebar;
+
+

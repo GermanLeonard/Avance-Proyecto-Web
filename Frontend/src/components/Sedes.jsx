@@ -31,7 +31,7 @@ const Sedes = () => {
                         <div>
                             <h4>{item.lugar}</h4>
                             <p>{item.descripcion}</p>
-                            <Link to={`/reserva2/${item.id}`}>
+                            <Link to={`/reserva/${item.id}`}>
                                 <button>Reserva</button>
                             </Link>
                         </div>
