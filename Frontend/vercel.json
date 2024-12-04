@@ -9,7 +9,7 @@
    "rewrites": [
     {"source": "/admin/", "destination": "https://avance-proyecto-web-lg24.vercel.app/"},
     {"source": "/admin/:match*", "destination": "https://avance-proyecto-web-lg24.vercel.app/:match"},
-    {"source": "/", "destination": "/index.html"}
+    {"source": "/(*)", "destination": "/index.html"}
   ]
     
   }
