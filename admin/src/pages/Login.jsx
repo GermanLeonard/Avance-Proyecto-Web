@@ -23,7 +23,13 @@ const Login = () => {
                     toast.error(data.message)
                 }
             } else{
-
+                const {data} = await axios.post(backendUrl + '/api/admin-sede/login', {email, password})
+                if (data.success) {
+                    localStorage.setItem('adminSedeToken', data.token)
+                    setAdminGeneralToken(data.token);
+                } else{
+                    toast.error(data.message)
+                }
             }
         } catch (error) {
             console.log("error")
