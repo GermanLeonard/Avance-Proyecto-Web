@@ -5,7 +5,6 @@ import connectDB from './config/mongodb.js'
 import adminGeneralRouter from './routes/adminGeneralRoute.js'
 import canchaRouter from './routes/canchaRoute.js'
 import userRouter from './routes/userRoute.js'
-import adminSedeRoutes from './routes/adminSedeRoute.js'
 
 //app config
 const app = express()
@@ -20,7 +19,6 @@ app.use(cors())
 app.use('/api/admin-general', adminGeneralRouter)
 app.use('/api/cancha', canchaRouter)
 app.use('/api/user', userRouter)
-app.use('/api/admin-sede', adminSedeRoutes)
 
 app.get('/', (req, res) => {
   res.send('API funcional')
