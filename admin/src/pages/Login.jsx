@@ -3,10 +3,12 @@ import '../styles/Login.css'
 import { AdminGeneralContext } from '../context/AdminGeneralContext'
 import axios from 'axios'
 import { toast } from 'react-toastify'
+import { AdminSedeContext } from '../context/AdminSedeContext'
 
 const Login = () => {
     const [state, setState] = useState('Administrador de Sede')
     const {setAdminGeneralToken, backendUrl} = useContext(AdminGeneralContext)
+    const {setAdminSedeToken} = useContext(AdminSedeContext)
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -26,13 +28,13 @@ const Login = () => {
                 const {data} = await axios.post(backendUrl + '/api/admin-sede/login', {email, password})
                 if (data.success) {
                     localStorage.setItem('adminSedeToken', data.token)
-                    setAdminGeneralToken(data.token);
+                    setAdminSedeToken(data.token);
                 } else{
                     toast.error(data.message)
                 }
             }
         } catch (error) {
-            console.log("error")
+            console.log(error.message)
         }
     }
 
