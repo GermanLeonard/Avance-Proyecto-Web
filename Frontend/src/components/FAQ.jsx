@@ -10,9 +10,9 @@ const FAQ = () => {
 
   const faqs = [
     { question: '¿Cómo puedo reservar una cancha?', answer: 'Puedes reservar una cancha desde nuestra página web en la sección de reservas.' },
-    { question: '¿Cuáles son los métodos de pago aceptados?', answer: 'Aceptamos pagos con tarjetas de crédito, débito y transferencias bancarias.' },
-    { question: '¿Puedo cancelar mi reserva?', answer: 'Sí, puedes cancelar tu reserva hasta 24 horas antes del evento.' },
-    { question: '¿Hay descuentos para grupos grandes?', answer: 'Ofrecemos descuentos especiales para grupos de 10 o más personas.' },
+    { question: '¿Cuáles son los métodos de pago aceptados?', answer: 'En la pagina no debes hacer ningun pago, A la hora de llegar a la sucursal Aceptamos pagos con tarjetas de crédito, débito y transferencias bancarias.' },
+    { question: '¿Se puede Pagar a la hora de llegar a la sucursal?', answer: 'Sí, puedes cancelar tu pago cuando estes en la sucursal donde realizaste tu reserva.' },
+    { question: '¿Puede Mi centro deportivo aparecer en su pagina?', answer: 'Claro que si, Mandanos un mensaje en la seccion de contactanos y te Mandaremos un mensaje.' },
   ];
 
   return (
