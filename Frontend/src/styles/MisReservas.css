@@ -41,7 +41,7 @@
 .reserva-card button {
     margin: 10px 0;
     padding: 10px 20px;
-    background-color: #007bff;
+    background-color: #ff7700;
     color: white;
     border: none;
     border-radius: 5px;
@@ -52,12 +52,12 @@
 }
 
 .reserva-card button:hover {
-    background-color: #0056b3;
+    background-color: #cc5f00;
     transform: scale(1.05);
 }
 
 .reserva-card button:active {
-    background-color: #004494;
+    background-color: #b35300;
 }
 
 @media screen and (max-width: 768px) {
@@ -101,3 +101,4 @@
         padding: 5px 10px;
     }
 }
+
