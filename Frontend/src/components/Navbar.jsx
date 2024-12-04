@@ -6,6 +6,7 @@ import "../styles/Navbar.css";
 
 const Navbar = () => {
   const [showMenu, setShowMenu] = useState(false);
+  const [dropdownVisible, setDropdownVisible] = useState(false);
   const { token, setToken } = useContext(AppContext);
   const navigate = useNavigate();
 
@@ -16,6 +17,16 @@ const Navbar = () => {
   const logout = () => {
     setToken(false);
     localStorage.removeItem("token");
+  };
+
+  const showDropdown = () => {
+    setDropdownVisible(true);
+  };
+
+  const hideDropdown = () => {
+    setTimeout(() => {
+      setDropdownVisible(false);
+    }, 300); // Ajusta el tiempo según lo necesario
   };
 
   return (
@@ -48,15 +59,21 @@ const Navbar = () => {
       </ul>
       <ul className="profile">
         {token ? (
-          <div className="nav-profile">
+          <div
+            className="nav-profile"
+            onMouseEnter={showDropdown}
+            onMouseLeave={hideDropdown}
+          >
             <img src={assets.userImg} alt="profile" />
             <img src={assets.dropdownIcon} alt="dropdown" />
-            <div className="nav-dropdown-container">
-              <div className="nav-dropdown">
-                <p onClick={() => navigate("/mis-reservas")}>Mis Reservas</p>
-                <p onClick={logout}>Cerrar Sesión</p>
+            {dropdownVisible && (
+              <div className="nav-dropdown-container">
+                <div className="nav-dropdown">
+                  <p onClick={() => navigate("/mis-reservas")}>Mis Reservas</p>
+                  <p onClick={logout}>Cerrar Sesión</p>
+                </div>
               </div>
-            </div>
+            )}
           </div>
         ) : (
           <div className="auth-buttons">
@@ -78,5 +95,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-
-
