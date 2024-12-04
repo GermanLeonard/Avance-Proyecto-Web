@@ -109,10 +109,12 @@ body, html {
   top: 60px;
   right: 0;
   display: none;
+  z-index: 20;
 }
 
-.nav-profile:hover .nav-dropdown-container {
-  display: block;
+.nav-profile:hover .nav-dropdown-container,
+.nav-dropdown-container:hover {
+  display: block; 
 }
 
 .nav-dropdown {
