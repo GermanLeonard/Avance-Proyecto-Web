@@ -6,13 +6,11 @@
         "use": "@vercel/static-build"
       }
     ],
-    "rewrites": [
-      {
-        "source": "/(.*)",
-        "destination": "/index.html"
-      },
-      {"source": "/admin/(.*)", "destination": "https://avance-proyecto-web-lg24.vercel.app"}
-    ]
+   "rewrites": [
+    {"source": "/admin/", "destination": "https://avance-proyecto-web-lg24.vercel.app/"},
+    {"source": "/admin/:match*", "destination": "https://avance-proyecto-web-lg24.vercel.app/:match"},
+    {"source": "/", "destination": "/index.html"}
+  ]
     
   }
   
