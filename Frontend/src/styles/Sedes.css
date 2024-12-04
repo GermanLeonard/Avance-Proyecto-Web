@@ -98,3 +98,55 @@ button {
 button:hover {
     background-color: #d2691e;
 }
+
+@media screen and (max-width: 768px) {
+    .sedes-info {
+        padding-inline: 50px; 
+        font-size: 18px; 
+    }
+
+    .sedes-card {
+        grid-template-columns: 1fr; 
+        gap: 50px; 
+        padding: 1rem; 
+    }
+
+    .sedes-card p {
+        width: 100%; 
+    }
+
+    .sedes-card img {
+        height: auto; 
+        width: 100%; 
+    }
+
+    .sedes h3 {
+        font-size: 2.5em; 
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .sedes-info {
+        padding-inline: 20px; 
+        font-size: 16px; 
+    }
+
+    .sedes-card {
+        padding: 1rem;
+        margin-bottom: 40px; 
+        gap: 30px; 
+    }
+
+    .sedes-card h4 {
+        font-size: 30px; 
+    }
+
+    .sedes-card p {
+        font-size: 16px; 
+    }
+
+    button {
+        font-size: 16px; 
+        padding: 8px 15px; 
+    }
+}

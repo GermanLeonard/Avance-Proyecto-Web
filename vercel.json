@@ -1,0 +1,6 @@
+{
+    "rewrites": [
+      {"source": "/admin/", "destination": "https://avance-proyecto-web-lg24.vercel.app"},
+      {"source": "/", "destination": "https://frontendpagina.vercel.app"}
+    ]
+  }
