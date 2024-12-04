@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import '../styles/Header.css';
-import { assets } from '../assets/assets';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import "../styles/Header.css"; // Importa el archivo CSS normal
+import { assets } from "../assets/assets";
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
   const images = [assets.bkb, assets.futbol, assets.padel];
   const [currentIndex, setCurrentIndex] = useState(0);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -37,8 +37,13 @@ const Header = () => {
         </button>
         <div className="slide-text">
           <h1>CONQUISTA TU POTENCIAL</h1>
-          <p>Descubre todas las opciones que tenemos disponibles para ti dentro de nuestras sedes deportivas.</p>
-          <button className="reserve-btn" onClick={()=>{navigate('/reserva')}}>RESERVA</button>
+          <p>
+            Descubre todas las opciones que tenemos disponibles para ti dentro
+            de nuestras sedes deportivas.
+          </p>
+          <button className="reserve-btn" onClick={() => navigate("/reserva")}>
+            RESERVA
+          </button>
         </div>
       </div>
     </header>
