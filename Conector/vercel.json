@@ -1,0 +1,17 @@
+
+
+  {
+    "version": 2,
+    "builds": [
+      {
+        "src": "package.json",
+        "use": "@vercel/static-build"
+      }
+    ],
+    "rewrites": [
+        {"source": "/admin/(.*)", "destination": "https://avance-proyecto-web-lg24.vercel.app"},
+      {"source": "/(.*)", "destination": "https://frontendpagina.vercel.app"}
+      
+    ]
+    
+  }
