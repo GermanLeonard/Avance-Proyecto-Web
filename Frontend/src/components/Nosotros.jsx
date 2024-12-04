@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 
 const Nosotros = () => {
   return (
-    <div className='nosotros'>
+    <div className='nosotros' id='nosotros'>
       <h3>Nosotros</h3>
       <div className='cuadro'>
         <div className='info-container'>

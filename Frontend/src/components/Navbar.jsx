@@ -30,19 +30,19 @@ const Navbar = () => {
         <div></div>
       </div>
       <ul className="nav-links">
-        <a href="/">
+        <a href="/#header">
           <li>Inicio</li>
         </a>
         <a href="/#sedes">
           <li>Sedes</li>
         </a>
-        <a href="/nosotros">
+        <a href="/#nosotros">
           <li>Nosotros</li>
         </a>
-        <a href="/faq">
+        <a href="/#faq">
           <li>FAQ</li>
         </a>
-        <a href="/contacto">
+        <a href="/#contact">
           <li>Contáctanos</li>
         </a>
       </ul>

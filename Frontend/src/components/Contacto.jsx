@@ -17,7 +17,7 @@ const Contacto = () => {
   };
 
   return (
-    <div className="contact-container">
+    <div className="contact-container" id='contact'>
       <div className="contact-header">Contáctanos</div>
       <div className="contact-wrapper">
         <div className="info-section">
@@ -37,7 +37,6 @@ const Contacto = () => {
             action="https://formsubmit.co/sportspotsv@gmail.com" 
             method="POST"
           >
-            {/* Atributos necesarios para Formsubmit */}
             <input type="hidden" name="_captcha" value="false" />
             <input type="hidden" name="_next" value="https://www.sportspotsv.com/" />
 

@@ -78,17 +78,20 @@
     font-weight: 700;
 }
 
-@media (max-width: 768px) {
+@media (min-width: 769px) {
     .info-container {
-        flex-direction: column; /* Los textos se apilan verticalmente */
-        gap: 20px;
+        flex-direction: row;
+        gap: 40px;
+    }
+
+    .info-container div {
+        width: 45%;
     }
 
     .imagen-deporte {
-        position: relative; /* Cambia posición en pantallas pequeñas */
-        bottom: auto;
-        right: auto;
-        margin: 0 auto;
-        width: 280px; /* Ajusta tamaño de la imagen */
+        position: absolute;
+        bottom: 0;
+        right: -60px;
+        width: 380px;
     }
 }

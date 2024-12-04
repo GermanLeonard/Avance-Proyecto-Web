@@ -26,7 +26,7 @@ const Header = () => {
   };
 
   return (
-    <header className="header">
+    <header className="header" id="header">
       <div className="slider">
         <button className="arrow left-arrow" onClick={handlePrevious}>
           &#9664;
