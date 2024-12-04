@@ -16,7 +16,7 @@
     border-radius: 16px;
     padding: 40px;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-    display: inline-block;
+    display:flex;
     width: 85%;
     max-width: 1100px;
     height: auto;
@@ -38,7 +38,6 @@
     text-shadow: 0px 4px 4px rgba(240, 240, 240, 0.5);
     border-radius: 16px; 
     box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
-    
 }
 
 .info-container {
@@ -46,6 +45,7 @@
     justify-content: space-between;
     gap: 40px;
     align-items: stretch; 
+    flex-wrap: wrap; 
 }
 
 .info-container div {
@@ -78,3 +78,17 @@
     font-weight: 700;
 }
 
+@media (max-width: 768px) {
+    .info-container {
+        flex-direction: column; /* Los textos se apilan verticalmente */
+        gap: 20px;
+    }
+
+    .imagen-deporte {
+        position: relative; /* Cambia posición en pantallas pequeñas */
+        bottom: auto;
+        right: auto;
+        margin: 0 auto;
+        width: 280px; /* Ajusta tamaño de la imagen */
+    }
+}
