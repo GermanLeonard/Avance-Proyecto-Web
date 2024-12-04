@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react'
-import '../../styles/Agregar.css'
+import '../../styles/AgregarCancha.css'
 import { sucursal } from '../../assets/assets'
 import { AdminGeneralContext } from '../../context/AdminGeneralContext'
 import { toast } from 'react-toastify'
@@ -73,52 +73,94 @@ const AgregarCancha = () => {
   }
 
   return (
-    <form onSubmit={onSubmit}>
-      <p>
-        Agregar Cancha
-      </p>
-      <div>
-        <div className='formulario'>
-          <div>
-            <div>
-              <p>Nombre de la Cancha</p>
-              <input onChange={(e)=>setName(e.target.value)} value={name} type="text" placeholder='Nombre' required/>
-            </div>
-            <div>
-              <p>Sede de la Cancha</p>
-              <select onChange={(e)=>handleLugarChange(e.target.value)} value={lugar} name="" id="">
-                <option value="Antiguo Cuscatlán">Antiguo Cuscatlán</option>
-                <option value="Los Próceres">Los Próceres</option>
-                <option value="El Platillo">El Platillo</option>
-              </select>
-            </div>
-            <div>
-              <p>Deporte de la Cancha</p>
-              <select onChange={(e)=>setDeporte(e.target.value)} value={deporte} name="" id="">
-                <option value="Futbol">Futbol</option>
-                <option value="Basketball">Basketball</option>
-                <option value="Padel">Padel</option>
-              </select>
-            </div>
-          </div>
-          <div>
-            <div>
-              <p>Descripcion de la Cancha</p>
-              <textarea onChange={(e)=>setDescripcion(e.target.value)} value={descripcion} placeholder='Descripción' required/>
-            </div>
-            <div>
-              <p>Capacidad de la Cancha</p>
-              <input onChange={(e)=>setCapacidad(e.target.value)} value={capacidad} type="text" placeholder='Capacidad' required/>
-            </div>
-            <div>
-              <p>Precio por Hora de la Cancha</p>
-              <input onChange={(e)=>setPrecioHora(e.target.value)} value={precioHora} type="number" placeholder='Precio' required/>
-            </div>
-          </div>
+    <form onSubmit={onSubmit} className="agregar-cancha-form">
+  <p>Agregar Cancha</p>
+  <div>
+    <div className="agregar-cancha-container">
+      <div className="agregar-cancha-column">
+        <div>
+          <label className="agregar-cancha-label">Nombre de la Cancha</label>
+          <input
+            onChange={(e) => setName(e.target.value)}
+            value={name}
+            type="text"
+            placeholder="Nombre"
+            required
+            className="agregar-cancha-input"
+          />
         </div>
-        <button type='submit'>Agregar Cancha</button>
+        <div>
+          <label className="agregar-cancha-label">Sede de la Cancha</label>
+          <select
+            onChange={(e) => handleLugarChange(e.target.value)}
+            value={lugar}
+            className="agregar-cancha-select"
+          >
+            <option value="Antiguo Cuscatlán">Antiguo Cuscatlán</option>
+            <option value="Los Próceres">Los Próceres</option>
+            <option value="El Platillo">El Platillo</option>
+          </select>
+        </div>
+        <div>
+          <label className="agregar-cancha-label">Deporte de la Cancha</label>
+          <select
+            onChange={(e) => setDeporte(e.target.value)}
+            value={deporte}
+            className="agregar-cancha-select"
+          >
+            <option value="Futbol">Futbol</option>
+            <option value="Basketball">Basketball</option>
+            <option value="Padel">Padel</option>
+          </select>
+        </div>
       </div>
-    </form>
+      <div className="agregar-cancha-column">
+        <div>
+          <label className="agregar-cancha-label">Descripción de la Cancha</label>
+          <textarea
+            onChange={(e) => setDescripcion(e.target.value)}
+            value={descripcion}
+            placeholder="Descripción"
+            required
+            className="agregar-cancha-textarea"
+          />
+        </div>
+        <div>
+          <label className="agregar-cancha-label">Capacidad de la Cancha</label>
+          <input
+            onChange={(e) => setCapacidad(e.target.value)}
+            value={capacidad}
+            type="text"
+            placeholder="Capacidad"
+            required
+            className="agregar-cancha-input"
+          />
+        </div>
+        <div>
+  <label className="agregar-cancha-label">Precio por Hora de la Cancha</label>
+  <input
+    onChange={(e) => {
+      const value = e.target.value;
+      if (value >= 0) {
+        setPrecioHora(value);
+      } else {
+        toast.warn("El precio no puede ser negativo.");
+      }
+    }}
+    value={precioHora}
+    type="number"
+    placeholder="Precio"
+    min="0"
+    required
+    className="agregar-cancha-input"
+  />
+</div>
+
+      </div>
+    </div>
+    <button type="submit" className="agregar-cancha-button">Agregar Cancha</button>
+  </div>
+</form>
   )
 }
 

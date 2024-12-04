@@ -1,3 +1,4 @@
+
 import React, { useState, useContext } from "react";
 import "../styles/Login.css";
 import { AdminGeneralContext } from "../context/AdminGeneralContext";
@@ -9,9 +10,11 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+
   const handleLogin = async (event) => {
     event.preventDefault();
     try {
+
       const { data } = await axios.post(
         backendUrl + "/api/admin-general/login",
         { email, password }
@@ -57,6 +60,7 @@ const Login = () => {
           <button type="submit" className="custom-auth-button">
             Login
           </button>
+
         </form>
       </div>
     </div>
