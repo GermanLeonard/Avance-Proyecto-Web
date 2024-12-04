@@ -23,10 +23,6 @@ const Sidebar = () => {
           <p>{adminGeneralToken ? 'Administrador General' : 'Administrador de Sede'}</p>
             {
               (adminGeneralToken /*|| adminSedeToken*/) && <nav className='menu'>
-                <NavLink to={'/admin-dashboard'} className={({ isActive }) => isActive ? "menu-item active" : "menu-item"}>
-                  <i className="fas fa-home"></i>
-                  <span>Inicio</span>
-                </NavLink>
                 <NavLink to={'/admin-reservas'} className={({ isActive }) => isActive ? "menu-item active" : "menu-item"}>
                   <i className="fas fa-eye"></i>
                   <span>Ver Reservas</span>

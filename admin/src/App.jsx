@@ -5,8 +5,6 @@ import 'react-toastify/dist/ReactToastify.css'
 import { AdminGeneralContext } from './context/AdminGeneralContext'
 import Sidebar from './components/Sidebar'
 import { Routes, Route } from 'react-router-dom'
-import DashboardGeneral from './pages/adminGeneral/DashboardGeneral'
-import ReservasTodas from './pages/adminGeneral/ReservasTodas'
 import EstadisticasGeneral from './pages/adminGeneral/EstadisticasGeneral'
 import AgregarEmpleado from './pages/adminGeneral/AgregarEmpleado'
 import AgregarCancha from './pages/adminGeneral/AgregarCancha'
@@ -25,7 +23,6 @@ const App = () => {
         <Sidebar/>
         <Routes>
           <Route path='/' element={<></>}/>
-          <Route path='/admin-dashboard' element={<DashboardGeneral/>}/>
           <Route path='/admin-reservas' element={<VerReservas/>}/>
           <Route path='/admin-estadisticas' element={<EstadisticasGeneral/>}/>
           <Route path='/admin-agregar-empleado' element={<AgregarEmpleado/>}/>

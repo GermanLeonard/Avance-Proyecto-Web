@@ -4,6 +4,8 @@ import {v2 as cloudinary} from 'cloudinary'
 import canchaModel from '../models/canchaModel.js'
 import adminSedeModel from '../models/adminSedeModel.js'
 import jwt from 'jsonwebtoken'
+import reservaModel from '../models/reservaModel.js'
+import userModel from '../models/userModel.js'
 
 //API para agregar adminSede
 const addAdminSede = async (req, res) => {
@@ -111,4 +113,51 @@ const cambiarDisponibilidad = async (req, res) => {
     }
 }
 
-export {addAdminSede, addCancha, loginAdminGeneral, canchasTodas, cambiarDisponibilidad}
+//API para obtener la lista de la reservas
+const reservasAdmin = async (req, res) => {
+    try {
+        const reservas = await reservaModel.find({})
+        res.json({success:true, reservas})
+    } catch (error) {
+        console.log(error)
+        res.json({success: false, message: error.message})
+    }
+}
+
+const cancelarReserva = async (req, res) => {
+    try {
+       const {reservaId} = req.body
+       const reservaData = await reservaModel.findById(reservaId)
+       await reservaModel.findByIdAndUpdate(reservaId, {cancelado: true})
+       const {canchaId, espacioFecha, reservaHora} = reservaData
+       const canchaData = await canchaModel.findById(canchaId)
+       let espacios_reservados = canchaData.espacios_reservados
+       espacios_reservados[espacioFecha] = espacios_reservados[espacioFecha].filter(e => e !== reservaHora)
+       await canchaModel.findByIdAndUpdate(canchaId, {espacios_reservados})
+    } catch (error) {
+        console.log(error)
+        res.json({success: false, message: error.message})
+    }
+}
+
+//API para obtener el dashboard
+const adminDashboard = async (req, res) => {
+    try {
+        const canchas = await canchaModel.find({})
+        const users = await userModel.find({})
+        const reservas = await reservaModel.find({})
+        const dashboardData = {
+            canchas: canchas.length,
+            reservas: reservas.length,
+            users: users.length,
+            reservasRecientes: reservas.filter((reserva) => reserva.cancelado === false).reverse().slice(0,5)
+        }
+        console.log(dashboardData)
+        res.json({success: true, dashboardData})
+    } catch (error) {
+        console.log(error)
+        res.json({success: false, message: error.message})
+    }
+}
+
+export {addAdminSede, addCancha, loginAdminGeneral, canchasTodas, cambiarDisponibilidad, reservasAdmin, cancelarReserva, adminDashboard}

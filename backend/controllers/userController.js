@@ -104,4 +104,37 @@ const reservarCancha = async (req, res) => {
     }
 }
 
-export {registrarUsuario, loginUsuario, reservarCancha}
+//API para obtener las reservas del usuario en 'mis-reservas'
+const listaReservas = async (req, res) => {
+    try {
+        const {userId} = req.body
+        const reservas = await reservaModel.find({userId})
+        res.json({success: true, reservas})
+    } catch (error) {
+        console.log(error)
+        res.json({success: false, message: error.message})
+    }
+}
+
+//API para cancelar reservas del propio usuario
+const cancelarReserva = async (req, res) => {
+    try {
+       const {userId, reservaId} = req.body
+       const reservaData = await reservaModel.findById(reservaId)
+       //verificacion
+       if (reservaData.userId !== userId){
+        return res.json({success:false, message:"Acción NO Autorizada"})
+       }
+       await reservaModel.findByIdAndUpdate(reservaId, {cancelado: true})
+       const {canchaId, espacioFecha, reservaHora} = reservaData
+       const canchaData = await canchaModel.findById(canchaId)
+       let espacios_reservados = canchaData.espacios_reservados
+       espacios_reservados[espacioFecha] = espacios_reservados[espacioFecha].filter(e => e !== reservaHora)
+       await canchaModel.findByIdAndUpdate(canchaId, {espacios_reservados})
+    } catch (error) {
+        console.log(error)
+        res.json({success: false, message: error.message})
+    }
+}
+
+export {registrarUsuario, loginUsuario, reservarCancha, listaReservas, cancelarReserva}

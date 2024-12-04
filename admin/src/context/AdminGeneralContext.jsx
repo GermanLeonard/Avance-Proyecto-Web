@@ -6,6 +6,7 @@ import {toast} from 'react-toastify'
 const AdminGeneralContextProvider = (props) => {
     const [adminGeneralToken, setAdminGeneralToken] = useState(localStorage.getItem('adminGeneralToken')?localStorage.getItem('adminGeneralToken'):'')
     const [canchas, setCanchas] = useState([])
+    const [reservas, setReservas] = useState([])
     const backendUrl = import.meta.env.VITE_BACKEND_URL
 
     const getTodasCanchas = async () => {
@@ -35,8 +36,20 @@ const AdminGeneralContextProvider = (props) => {
             toast.error(error.message)
         }
     }
+    const getTodasReservas = async () => {
+        try {
+            const {data} = await axios.get(backendUrl + '/api/admin-general/ver-reservas', {headers: {adminGeneralToken}})
+            if(data.success){
+                setReservas(data.reservas)
+            } else{
+                toast.error(data.message)
+            }
+        } catch (error) {
+            toast.error(error.message)
+        }
+    }
     const value = {
-        adminGeneralToken, setAdminGeneralToken, backendUrl, canchas, getTodasCanchas, cambiarDisponibilidad
+        adminGeneralToken, setAdminGeneralToken, backendUrl, canchas, getTodasCanchas, cambiarDisponibilidad, reservas, setReservas, getTodasReservas
     }
 
     return (

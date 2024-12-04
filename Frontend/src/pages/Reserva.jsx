@@ -7,6 +7,12 @@ import "../styles/Reserva.css";
 import { assets } from "../assets/assets";
 
 function Reserva() {
+  const imagenes = {
+    Futbol: assets.CanchaFutbolEjemplo,
+    Basketball: assets.CanchaBasketballEjemplo,
+    Padel: assets.CanchaPadelEjemplo
+  }
+  
   const navigate = useNavigate();
   const { sucursal } = useParams();
   const { canchas } = useContext(AppContext);
@@ -73,7 +79,7 @@ function Reserva() {
               className="canchas-card"
             >
               <img
-                src={item.image}
+                src={imagenes[item.deporte]}
                 alt={item.name}
                 className="canchas-card-img"
               />
@@ -99,5 +105,6 @@ function Reserva() {
     </div>
   );
 }
+
 
 export default Reserva;

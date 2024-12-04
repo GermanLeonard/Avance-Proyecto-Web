@@ -27,10 +27,12 @@ const Cancha = () => {
 
     const fetchCanchaInfo = async () => {
         const canchaInfo = canchas.find(cancha => cancha._id == canchaId)
+        console.log("CanchaInfo obtenida:", canchaInfo);
         setCanchaInfo(canchaInfo)
     }
 
     const horariosDisponibles = async () => {
+    
         setReservaFecha([])
         let ahora = new Date()
 
@@ -58,11 +60,24 @@ const Cancha = () => {
             let horasDisponibles = []
             while(fechaActual < horaFin){
                 let formatoTiempo = fechaActual.toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'})
-                // agregar hora al array de horasDisponibles
-                horasDisponibles.push({
+
+                let dia = fechaActual.getDate()
+                let mes = fechaActual.getMonth() + 1
+                let anio = fechaActual.getFullYear()
+
+                const espacioFecha = dia + '_' + mes + '_' + anio
+                const espacioTiempo = formatoTiempo
+
+                const disponible = canchaInfo.espacios_reservados[espacioFecha] && canchaInfo.espacios_reservados[espacioFecha].includes(espacioTiempo) ? false : true
+
+                //si el horario no a sido reservado, es true
+                if(disponible){
+                    // agregar hora al array de horasDisponibles
+                    horasDisponibles.push({
                     fecha: new Date(fechaActual),
                     hora: formatoTiempo
                 })
+                }
                 //Incrementar cada espacio por 1 hora
                 fechaActual.setHours(fechaActual.getHours() + 1)
             }
@@ -86,6 +101,7 @@ const Cancha = () => {
             console.log('Datos a enviar:', { canchaId, espacioFecha, reservaHora });
             const {data} = await axios.post(backendUrl + '/api/user/reservar-cancha', {canchaId, espacioFecha, reservaHora}, {headers:{token}})
             if (data.success) {
+                getCanchasData()
                 toast.success(data.message)
                 navigate('/mis-reservas')
             }else{
