@@ -119,8 +119,8 @@ const VerReservas = () => {
                 <td>
                   <i
                     className="fas fa-trash-alt delete-icon"
-                    onClick={() => {cancelarReserva(item._id)
-                    window.location.reload()}}
+                    onClick={() => cancelarReserva(item._id)
+                    }
                   ></i>
                 </td>
               </tr>
