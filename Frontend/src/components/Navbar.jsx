@@ -1,33 +1,22 @@
 import React, { useContext, useState } from "react";
 import { assets } from "../assets/assets";
-import { useNavigate } from "react-router-dom";
+import { Navigate, NavLink, useNavigate } from "react-router-dom";
 import { AppContext } from "../context/AppContext";
-import "../styles/Navbar.css";
 
 const Navbar = () => {
-  const [showMenu, setShowMenu] = useState(false);
-  const { token, setToken } = useContext(AppContext);
-  const navigate = useNavigate();
+    const [showMenu, setShowMenu] = useState(false) //para el menu desplegable en mobile
+    const {token, setToken} = useContext(AppContext)
+    const navigate = useNavigate()
 
-  const toggleMenu = () => {
-    setShowMenu(!showMenu);
-  };
-
-  const logout = () => {
-    setToken(false);
-    localStorage.removeItem("token");
-  };
-
+    const logout = () => {
+        setToken(false)
+        localStorage.removeItem('token')
+    }
   return (
-    <nav className={`navbar ${showMenu ? "responsive" : ""}`}>
-      <div className="logo" onClick={() => navigate("/")}>
+    <nav className="navbar">
+      <div onClick={() => navigate("/")} className="logo">
         <img src={assets.logo} alt="logo" />
         SPORT SPOT
-      </div>
-      <div className="hamburger" onClick={toggleMenu}>
-        <div></div>
-        <div></div>
-        <div></div>
       </div>
       <ul className="nav-links">
         <a href="/">
@@ -36,14 +25,14 @@ const Navbar = () => {
         <a href="/#sedes">
           <li>Sedes</li>
         </a>
-        <a href="/nosotros">
+        <a href="">
           <li>Nosotros</li>
         </a>
-        <a href="/faq">
+        <a href="">
           <li>FAQ</li>
         </a>
-        <a href="/contacto">
-          <li>Contáctanos</li>
+        <a href="">
+          <li>Contactanos</li>
         </a>
       </ul>
       <ul className="profile">
@@ -53,7 +42,7 @@ const Navbar = () => {
             <img src={assets.dropdownIcon} alt="dropdown" />
             <div className="nav-dropdown-container">
               <div className="nav-dropdown">
-                <p onClick={() => navigate("/mis-reservas")}>Mis Reservas</p>
+                <p onClick={() => navigate("mis-reservas")}>Mis Reservas</p>
                 <p onClick={logout}>Cerrar Sesión</p>
               </div>
             </div>
@@ -78,7 +67,4 @@ const Navbar = () => {
 };
 
 export default Navbar;
-
-
-
 
