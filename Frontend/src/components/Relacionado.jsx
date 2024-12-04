@@ -30,7 +30,7 @@ const Relacionado = ({canchaId, deporte}) => {
         <p>Explora más canchas</p>
         <div className='canchas-card-container relacionado-container'>
             {canchasRelacionadas.slice(0,5).map((item, index) => (
-                <div onClick={() => {navigate(`/cancha/${item.id}`); document.body.scrollTop = 0}} key={index} className='canchas-card'>
+                <div onClick={() => {navigate(`/cancha/${item._id}`); document.body.scrollTop = 0}} key={index} className='canchas-card'>
                     <img src={imagenes[item.deporte]} alt="" className='canchas-card-img'/>
                     <div>
                         <div>
