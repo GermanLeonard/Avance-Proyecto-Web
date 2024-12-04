@@ -1,56 +1,76 @@
-import React, {useState, useContext} from 'react'
-import '../styles/Login.css'
-import { AdminGeneralContext } from '../context/AdminGeneralContext'
-import axios from 'axios'
-import { toast } from 'react-toastify'
+import React, { useState, useContext } from 'react';
+import '../styles/Login.css'; // Ajusta la ruta según sea necesario
+import { AdminGeneralContext } from '../context/AdminGeneralContext';
+import axios from 'axios';
+import { toast } from 'react-toastify';
 
 const Login = () => {
-    const [state, setState] = useState('Administrador de Sede')
-    const {setAdminGeneralToken, backendUrl} = useContext(AdminGeneralContext)
+  const [state, setState] = useState('Administrador General');
+  const { setAdminGeneralToken, backendUrl } = useContext(AdminGeneralContext);
 
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
-    const handleLogin = async (event) => {
-        event.preventDefault()
-        try {
-            if(state == 'Administrador General'){
-                const {data} = await axios.post(backendUrl + '/api/admin-general/login', {email, password})
-                if (data.success) {
-                    localStorage.setItem('adminGeneralToken', data.token)
-                    setAdminGeneralToken(data.token);
-                } else{
-                    toast.error(data.message)
-                }
-            } else{
-
-            }
-        } catch (error) {
-            console.log("error")
+  const handleLogin = async (event) => {
+    event.preventDefault();
+    try {
+      if (state === 'Administrador General') {
+        const { data } = await axios.post(backendUrl + '/api/admin-general/login', { email, password });
+        if (data.success) {
+          localStorage.setItem('adminGeneralToken', data.token);
+          setAdminGeneralToken(data.token);
+        } else {
+          toast.error(data.message);
         }
+      } else {
+        toast.warn('Funcionalidad para Administrador de Sede aún no implementada.');
+      }
+    } catch (error) {
+      toast.error('Error al iniciar sesión.');
     }
+  };
 
   return (
-    <form onSubmit={handleLogin}>
-        <div>
-            <p><span>{state} </span> Login</p>
-            <div>
-                <p>Email</p>
-                <input onChange={(e) => setEmail(e.target.value)} value={email} type="email" required/>
-            </div>
-            <div>
-                <p>Contraseña</p>
-                <input onChange={(e) => setPassword(e.target.value)} value={password} type="password" required/>
-            </div>
-            <button>Login</button>
-            {
-                state == 'Administrador de Sede'
-                ? <p onClick={() => setState('Administrador General')}> Eres Administrador General? Haz click aqui</p>
-                : <p onClick={() => setState('Administrador de Sede')}>Eres Administrador de Sede? Haz click aqui</p>
-            }
-        </div>
-    </form>
-  )
-}
+    <div className="custom-auth-container">
+      <div className="custom-auth-content">
+        <form className="custom-auth-form" onSubmit={handleLogin}>
+          <h1>{state} Login</h1>
+          <div className="custom-input-wrapper">
+            <i className="custom-auth-icon fas fa-envelope"></i>
+            <input
+              className="custom-auth-input"
+              type="email"
+              placeholder="Correo electrónico"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </div>
+          <div className="custom-input-wrapper">
+            <i className="custom-auth-icon fas fa-lock"></i>
+            <input
+              className="custom-auth-input"
+              type="password"
+              placeholder="Contraseña"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </div>
+          <button type="submit" className="custom-auth-button">Login</button>
+          <div className="custom-auth-link">
+            {state === 'Administrador General' ? (
+              <p onClick={() => setState('Administrador de Sede')}>¿Eres Administrador de Sede? Haz click aquí</p>
+            ) : (
+              <p onClick={() => setState('Administrador General')}>¿Eres Administrador General? Haz click aquí</p>
+            )}
+          </div>
+        </form>
+      </div>
+    </div>
+  );
+};
 
-export default Login
+export default Login;
+
+
