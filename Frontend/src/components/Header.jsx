@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "../styles/Header.css"; // Importa el archivo CSS normal
+import "../styles/Header.css"; 
 import { assets } from "../assets/assets";
 import { useNavigate } from "react-router-dom";
 
@@ -36,7 +36,9 @@ const Header = () => {
           &#9654;
         </button>
         <div className="slide-text">
-          <h1>CONQUISTA TU POTENCIAL</h1>
+          <h1>
+            <span>CONQUISTA</span> TU POTENCIAL
+          </h1>
           <p>
             Descubre todas las opciones que tenemos disponibles para ti dentro
             de nuestras sedes deportivas.
@@ -51,4 +53,3 @@ const Header = () => {
 };
 
 export default Header;
-
