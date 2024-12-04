@@ -1,26 +1,40 @@
-import React, { useState, useContext } from 'react';
-import '../styles/Login.css'; // Ajusta la ruta según sea necesario
-import { AdminGeneralContext } from '../context/AdminGeneralContext';
-import axios from 'axios';
-import { toast } from 'react-toastify';
+import React, {useState, useContext} from 'react'
+import '../styles/Login.css'
+import { AdminGeneralContext } from '../context/AdminGeneralContext'
+import axios from 'axios'
+import { toast } from 'react-toastify'
+import { AdminSedeContext } from '../context/AdminSedeContext'
 
 const Login = () => {
-  const [state, setState] = useState('Administrador General');
-  const { setAdminGeneralToken, backendUrl } = useContext(AdminGeneralContext);
+    const [state, setState] = useState('Administrador de Sede')
+    const {setAdminGeneralToken, backendUrl} = useContext(AdminGeneralContext)
+    const {setAdminSedeToken} = useContext(AdminSedeContext)
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
 
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
 
-  const handleLogin = async (event) => {
-    event.preventDefault();
-    try {
-      if (state === 'Administrador General') {
-        const { data } = await axios.post(backendUrl + '/api/admin-general/login', { email, password });
-        if (data.success) {
-          localStorage.setItem('adminGeneralToken', data.token);
-          setAdminGeneralToken(data.token);
-        } else {
-          toast.error(data.message);
+    const handleLogin = async (event) => {
+        event.preventDefault()
+        try {
+            if(state == 'Administrador General'){
+                const {data} = await axios.post(backendUrl + '/api/admin-general/login', {email, password})
+                if (data.success) {
+                    localStorage.setItem('adminGeneralToken', data.token)
+                    setAdminGeneralToken(data.token);
+                } else{
+                    toast.error(data.message)
+                }
+            } else{
+                const {data} = await axios.post(backendUrl + '/api/admin-sede/login', {email, password})
+                if (data.success) {
+                    localStorage.setItem('adminSedeToken', data.token)
+                    setAdminSedeToken(data.token);
+                } else{
+                    toast.error(data.message)
+                }
+            }
+        } catch (error) {
+            console.log(error.message)
         }
       } else {
         toast.warn('Funcionalidad para Administrador de Sede aún no implementada.');

@@ -3,15 +3,23 @@ import { assets } from '../assets/assets'
 import { AdminGeneralContext } from '../context/AdminGeneralContext'
 import '../styles/Sidebar.css'
 import {NavLink, useNavigate} from 'react-router-dom'
+import { AdminSedeContext } from '../context/AdminSedeContext'
 
 const Sidebar = () => {
     const {adminGeneralToken, setAdminGeneralToken} = useContext(AdminGeneralContext)
+    const {adminSedeToken, setAdminSedeToken} = useContext(AdminSedeContext)
     const navigate = useNavigate()
 
     const logout = () => {
         navigate('/')
-        adminGeneralToken && setAdminGeneralToken('')
-        adminGeneralToken && localStorage.removeItem('adminGeneralToken')
+        if (adminGeneralToken) {
+          setAdminGeneralToken("");
+          localStorage.removeItem("adminGeneralToken");
+        }
+        if (adminSedeToken) {
+          setAdminSedeToken("");
+          localStorage.removeItem("adminSedeToken");
+        }
     }
   return (
     <div className="opciones-container reservas-page">
@@ -21,21 +29,16 @@ const Sidebar = () => {
             <h2>SPORT SPOT</h2>
           </div>
           <p>{adminGeneralToken ? 'Administrador General' : 'Administrador de Sede'}</p>
-            {
-              (adminGeneralToken /*|| adminSedeToken*/) && <nav className='menu'>
-                <NavLink to={'/admin-dashboard'} className={({ isActive }) => isActive ? "menu-item active" : "menu-item"}>
-                  <i className="fas fa-home"></i>
-                  <span>Inicio</span>
-                </NavLink>
-                <NavLink to={'/admin-reservas'} className={({ isActive }) => isActive ? "menu-item active" : "menu-item"}>
+            <nav className='menu'>
+                <NavLink to={adminGeneralToken ? '/admin-reservas' : "/admin-sede-reservas"} className={({ isActive }) => isActive ? "menu-item active" : "menu-item"}>
                   <i className="fas fa-eye"></i>
                   <span>Ver Reservas</span>
                 </NavLink>
-                <NavLink to={'/admin-estadisticas'} className={({ isActive }) => isActive ? "menu-item active" : "menu-item"}>
+                <NavLink to={adminGeneralToken ? '/admin-estadisticas' : "/admin-sede-estadisticas"} className={({ isActive }) => isActive ? "menu-item active" : "menu-item"}>
                   <i className="fas fa-chart-bar"></i>
                   <span>Ver Estadísticas</span>
                 </NavLink>
-                <NavLink to={'/admin-lista-canchas'} className={({ isActive }) => isActive ? "menu-item active" : "menu-item"}>
+                <NavLink to={adminGeneralToken ? '/admin-lista-canchas' : '/admin-sede-lista-canchas'} className={({ isActive }) => isActive ? "menu-item active" : "menu-item"}>
                   <i className="fas fa-futbol"></i>
                   <span>Ver Canchas</span>
                 </NavLink>
@@ -50,10 +53,8 @@ const Sidebar = () => {
                       <span>Agregar Cancha</span>
                     </NavLink>
                   </>
-                  )
-                }
+                )}
               </nav>
-            }
             <button className="back-button" onClick={logout}>
               <i className="fas fa-arrow-left"></i> Regresar
             </button>

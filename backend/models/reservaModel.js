@@ -10,7 +10,6 @@ const reservaSchema = new mongoose.Schema({
     precio: {type: Number, required: true},
     fecha: {type: Date, required: true},
     cancelado: {type: Boolean, default: false},
-    pago: {type: Boolean, default: false},
     completada: {type: Boolean, default: false},
 })
 
